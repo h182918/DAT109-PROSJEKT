@@ -1,0 +1,22 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="EXPO">
+    <output-path>$PROJECT_DIR$/artifacts/EXPO</output-path>
+    <root id="root">
+      <element id="dir-copy" path="$PROJECT_DIR$/WebContent/WEB-INF" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="DAT109-PROSJEKT" />
+          <element id="jpa-descriptors" facet="DAT109-PROSJEKT/jpa/JPA" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Java EE 5-Java EE 5" />
+          <element id="library" level="project" name="lib" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="DAT109-PROSJEKT/ejb/EJB" />
+      <element id="javaee-facet-resources" facet="DAT109-PROSJEKT/javaeeApplication/javaEEApplication" />
+      <element id="javaee-facet-resources" facet="DAT109-PROSJEKT/web/Web" />
+      <element id="dir-copy" path="$PROJECT_DIR$/WebContent/images" />
+    </root>
+  </artifact>
+</component>
