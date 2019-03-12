@@ -1,6 +1,7 @@
 package db;
 
 import Entities.Stand;
+import Entities.Vote;
 
 import javax.ejb.Stateless;
 import java.sql.*;
@@ -49,7 +50,7 @@ public class DbHandler {
             pstmt.setInt(1, id);
             ResultSet resultSet = pstmt.executeQuery();
 
-            while(resultSet.next()) {
+            while (resultSet.next()) {
                 stand = new Stand();
                 stand.setId((Integer) resultSet.getObject(1));
                 stand.setName((String) resultSet.getObject(2));
@@ -63,4 +64,32 @@ public class DbHandler {
             return stand;
         }
     }
+
+    public synchronized Vote getVoteByUserForStand(String user, int standId) {
+        Vote vote = null;
+
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM expo.vote WHERE vote.username = ? AND vote.stand = ?");
+            pstmt.setString(1, user);
+            pstmt.setInt(2, standId);
+            ResultSet resultSet = pstmt.executeQuery();
+
+            while (resultSet.next()) {
+                vote = new Vote();
+                vote.setUserName((String) resultSet.getObject(1));
+                vote.setStand((Stand) resultSet.getObject(2));
+                vote.setScore((Integer) resultSet.getObject(3));
+            }
+            connection.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        } finally {
+            return vote;
+        }
+    }
+
 }

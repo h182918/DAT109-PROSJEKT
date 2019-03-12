@@ -17,5 +17,7 @@ public class ResultServlet extends HttpServlet {
         //TODO - set parameters 'stand' and 'vote'
 
         request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request,response);
+
+        //update
     }
 }
