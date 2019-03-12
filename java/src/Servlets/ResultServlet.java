@@ -7,13 +7,15 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@WebServlet(name = "ResultServlet")
+@WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        //TODO - if necessary. Not a priority task.
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
+        //TODO - set parameters 'stand' and 'vote'
+
+        request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request,response);
     }
 }

@@ -34,6 +34,7 @@
       <configuration>
         <setting name="validation-enabled" value="true" />
         <datasource-mapping>
+          <factory-entry name="EXPOPU" value="1e237797-5fbe-42a0-8500-51db646af055" />
           <factory-entry name="Entities" />
         </datasource-mapping>
         <naming-strategy-map />

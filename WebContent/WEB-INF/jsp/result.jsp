@@ -30,36 +30,11 @@
     <div class="row m-3">
         <div class="col">
             <div class="text-center">
-                <div class="text-dark font-weight-bold">Gi din stemme til ${stand.name}-standen:</div>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
-    <div class="row m-2">
-        <div class="col-2">
-            <img src="${pageContext.servletContext.contextPath}/images/appleTestLogo.jpeg" class="img-fluid"/>
-        </div>
-        <c:forEach var="i" begin="1" end="5">
-            <div class="col-2">
-                <img id="star${i}" onclick="vote(${i})"
-                     src="${pageContext.servletContext.contextPath}/images/emptyStar.jpeg" class="img-fluid"/>
-            </div>
-        </c:forEach>
-    </div>
-    <div class="row m-3">
-        <div class="col">
-            <div class="text-center my-4">
-                <form name="sendVote" id="sendVote" method="post" action="Stand">
-                    <input type="hidden" value="0" name="vote" id="vote"/>
-                    <input type="hidden" value="${stand.id}" name="standId" id="StandId"/>
-                    <button type="submit" form="sendVote" class="btn btn-dark px-5">Stem!</button>
-                </form>
+                <div class="text-dark font-weight-bold">Du ga ${vote} stjerner til ${stand.name}-standen</div>
             </div>
         </div>
     </div>
 </div>
 
-<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/js.js"></script>
 </body>
 </html>

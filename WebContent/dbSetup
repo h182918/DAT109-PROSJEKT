@@ -1,0 +1,19 @@
+drop schema if exists expo cascade;
+create schema expo;
+set SEARCH_PATH to expo;
+
+create table stand (
+id serial,
+name varchar(255) unique,
+constraint id primary key (id)
+);
+
+create table vote (
+userName varchar(255),
+stand varchar(255),
+score int,
+constraint userName primary key (userName),
+constraint stand foreign key (stand) references stand(name) 
+);
+
+
