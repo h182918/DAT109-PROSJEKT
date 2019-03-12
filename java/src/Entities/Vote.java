@@ -1,18 +1,9 @@
 package Entities;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
-@Entity
 public class Vote {
 
-    @Id
     private String userName;
-
-    @ManyToOne
     private Stand stand;
-
     private int score;
 
     public Vote(String userName, Stand stand, int score) {

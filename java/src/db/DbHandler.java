@@ -23,7 +23,6 @@ public class DbHandler {
      * @param stand
      */
     public synchronized void newStand(Stand stand) {
-
         {
             try {
                 Class.forName("org.postgresql.Driver");
@@ -49,7 +48,12 @@ public class DbHandler {
             PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM expo.stand WHERE stand.id = ?");
             pstmt.setInt(1, id);
             ResultSet resultSet = pstmt.executeQuery();
-            stand = new Stand(resultSet.getString("name"));
+
+            while(resultSet.next()) {
+                stand = new Stand();
+                stand.setId((Integer) resultSet.getObject(1));
+                stand.setName((String) resultSet.getObject(2));
+            }
             connection.close();
         } catch (SQLException e) {
             e.printStackTrace();
