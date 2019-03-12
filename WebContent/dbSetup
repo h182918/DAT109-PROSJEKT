@@ -3,17 +3,19 @@ create schema expo;
 set SEARCH_PATH to expo;
 
 create table stand (
-id serial,
-name varchar(255) unique,
-constraint id primary key (id)
+standId serial,
+name varchar(50) unique not null,
+imageurl varchar(255),
+constraint standId primary key (standId)
 );
 
 create table vote (
-userName varchar(255),
-stand varchar(255),
+voteId serial,
+userName varchar(60),
+stand int,
 score int,
-constraint userName primary key (userName),
-constraint stand foreign key (stand) references stand(name) 
+constraint voteId primary key (voteId),
+constraint stand foreign key (stand) references stand(standId)
 );
 
 

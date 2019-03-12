@@ -5,21 +5,35 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.net.HttpCookie;
 import java.nio.charset.Charset;
+import java.util.Arrays;
 import java.util.Random;
 
 public class CookieHandler {
 
+    private static String characters = "qwertyuiopåasdfghjkløæzxcvbnmQWERTYUIOPÅASDFGHJKLØÆZXCVBNM1234567890";
+
     public CookieHandler() {
+
     }
 
-    public Cookie newCookie() {
-        byte[] array = new byte[255]; // length is bounded by 7
-        new Random().nextBytes(array);
-        String generatedString = new String(array, Charset.forName("UTF-8"));
+    public static Cookie newCookie() {
+        char[] chars = characters.toCharArray();
+        String generatedString = "";
+        Random random = new Random();
 
-        Cookie cookie = new Cookie("expoUser", generatedString);
+        for(int i = 0; i < 50; i++){
+            generatedString += chars[random.nextInt(chars.length)];
+        }
+
+        Cookie cookie = new Cookie(Common.USER, generatedString);
         return cookie;
     }
 
+    public static Cookie findCookie(HttpServletRequest request) {
+        return Arrays.stream(request.getCookies())
+                .filter(a -> a.getName().equals(Common.USER))
+                .findAny()
+                .orElse(null);
+    }
 
 }

@@ -38,7 +38,7 @@
 <div class="container">
     <div class="row m-2">
         <div class="col-2">
-            <img src="${pageContext.servletContext.contextPath}/images/appleTestLogo.jpeg" class="img-fluid"/>
+            <img src="${stand.imageurl}" class="img-fluid"/>
         </div>
         <c:forEach var="i" begin="1" end="5">
             <div class="col-2">
@@ -59,7 +59,7 @@
         </div>
     </div>
 </div>
-
 <script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/js.js"></script>
+<c:if test="${vote!=null}"><script>vote(${vote.score})</script></c:if>
 </body>
 </html>

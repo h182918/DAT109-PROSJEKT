@@ -4,12 +4,9 @@ public class Stand {
 
     private int id;
     private String name;
+    private String imageurl;
 
     public Stand() {
-    }
-
-    public Stand(String name) {
-        this.name = name;
     }
 
     public int getId() {
@@ -26,5 +23,13 @@ public class Stand {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImageurl() {
+        return imageurl;
+    }
+
+    public void setImageurl(String imageUrl) {
+        this.imageurl = imageUrl;
     }
 }

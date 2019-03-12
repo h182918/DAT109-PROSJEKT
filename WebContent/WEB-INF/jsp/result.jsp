@@ -30,7 +30,7 @@
     <div class="row m-3">
         <div class="col">
             <div class="text-center">
-                <div class="text-dark font-weight-bold">Du ga ${vote} stjerner til ${stand.name}-standen</div>
+                <div class="text-dark font-weight-bold">Du ga <span><font color="#b8860b" > ${vote} </font></span> stjerner til ${stand.name}-standen</div>
             </div>
         </div>
     </div>

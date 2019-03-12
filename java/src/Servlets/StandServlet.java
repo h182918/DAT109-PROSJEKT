@@ -1,7 +1,10 @@
 package Servlets;
 
 import Entities.Stand;
+import Entities.Vote;
 import db.DbHandler;
+import login.Common;
+import login.CookieHandler;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Arrays;
 
 @WebServlet(name = "StandServlet", urlPatterns = "/Stand")
 public class StandServlet extends HttpServlet {
@@ -23,42 +27,60 @@ public class StandServlet extends HttpServlet {
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
-        //Find user in db OR create user in db
+        //Find usercookie
+        Cookie userCookie = CookieHandler.findCookie(request);
 
+        if(userCookie == null) { //user has no cookie -> make new
+            userCookie = CookieHandler.newCookie();
+            response.addCookie(userCookie);
+        }
 
         //get vote from form
         String votestr = request.getParameter("vote");
+        int newVote = Integer.parseInt(votestr);
 
-        //get standId
-        String standId = request.getParameter("standId");
+        //get standId from form and find stand in database
+        String standIdStr = request.getParameter("standId");
+        int standId = Integer.parseInt(standIdStr);
+        Stand stand = db.getStand(standId);
 
-        //Save vote in db
+        //Save new vote in db or update old
+        Vote vote = db.getVoteByUserForStand(userCookie.getValue(),standId);
+        if(vote != null) { // vote for stand exists
+            db.updateVote(userCookie.getValue(),standId,newVote);
+            vote = db.getVoteByUserForStand(userCookie.getValue(),standId); //get updated vote
+        } else {
+            db.newVote(userCookie.getValue(),standId,newVote);
+        }
 
+        request.setAttribute("stand",stand);
+        request.setAttribute("vote",vote);
         //send to result servlet.
-        response.sendRedirect("ResultServlet");
+        response.sendRedirect("ResultServlet?standId="+stand.getId()+"&vote="+vote.getScore());
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO
-        Cookie user;
-        //Find user in db or make new cookie;
-        if(request.getCookies() != null) {
-            Cookie[] cookies = request.getCookies();
-            user = cookies[0];
-        }
 
         //get StandID from parameter
-        String standId = request.getParameter("id");
+        String standIdStr = request.getParameter("id");
+        int standId = Integer.parseInt(standIdStr);
 
         //find Stand in db and setup attribute "stand"
-        Stand stand = db.getStand(Integer.parseInt(standId));
-
-        if(stand != null) {
-            request.setAttribute("stand", stand);
-            request.getRequestDispatcher("WEB-INF/jsp/stand.jsp").forward(request, response);
-        }else {
+        Stand stand = db.getStand(standId);
+        if (stand == null) {
             throw new ServletException();
         }
+
+        //Find users-cookie if present.
+        Cookie userCookie = CookieHandler.findCookie(request);
+
+        if (userCookie != null) {
+            //If user has voted on stand before, find vote
+            Vote vote = db.getVoteByUserForStand(userCookie.getValue(), standId);
+            request.setAttribute("vote", vote);
+        }
+
+        request.setAttribute("stand", stand);
+        request.getRequestDispatcher("WEB-INF/jsp/stand.jsp").forward(request, response);
     }
 }

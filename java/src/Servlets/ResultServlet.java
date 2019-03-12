@@ -1,5 +1,10 @@
 package Servlets;
 
+import Entities.Stand;
+import Entities.Vote;
+import db.DbHandler;
+
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,15 +14,28 @@ import java.io.IOException;
 
 @WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
+
+    private DbHandler db;
+
+    @Override
+    public void init() throws ServletException {
+        super.init();
+        db = new DbHandler();
+    }
+
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //TODO - if necessary. Not a priority task.
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //TODO - set parameters 'stand' and 'vote'
+        String standIdstr = request.getParameter("standId");
+        int standId = Integer.parseInt(standIdstr);
+        Stand stand = db.getStand(standId);
 
+        String vote = request.getParameter("vote");
+
+        request.setAttribute("stand",stand);
+        request.setAttribute("vote",vote);
         request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request,response);
-
-        //update
     }
 }
