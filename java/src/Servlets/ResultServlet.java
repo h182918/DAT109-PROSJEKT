@@ -32,8 +32,11 @@ public class ResultServlet extends HttpServlet {
         int standId = Integer.parseInt(standIdstr);
         Stand stand = db.getStand(standId);
 
+        double avg = db.findAverageVote(standId);
+
         String vote = request.getParameter("vote");
 
+        request.setAttribute("avg",avg);
         request.setAttribute("stand",stand);
         request.setAttribute("vote",vote);
         request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request,response);

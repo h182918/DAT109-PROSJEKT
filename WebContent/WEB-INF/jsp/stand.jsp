@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${stand.name}</title>
+    <title>${stand.name} Standen</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -37,11 +37,19 @@
 </div>
 <div class="container">
     <div class="row m-2">
-        <div class="col-2">
-            <img src="${stand.imageurl}" class="img-fluid"/>
+        <div class="col-3">
         </div>
+        <div class="col-6">
+            <img src="${stand.imageurl}" class="img-fluid "/>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row m-2">
         <c:forEach var="i" begin="1" end="5">
-            <div class="col-2">
+            <div class="col">
                 <img id="star${i}" onclick="vote(${i})"
                      src="${pageContext.servletContext.contextPath}/images/emptyStar.jpeg" class="img-fluid"/>
             </div>
@@ -60,6 +68,8 @@
     </div>
 </div>
 <script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/js.js"></script>
-<c:if test="${vote!=null}"><script>vote(${vote.score})</script></c:if>
+<c:if test="${vote!=null}">
+    <script>vote(${vote.score})</script>
+</c:if>
 </body>
 </html>

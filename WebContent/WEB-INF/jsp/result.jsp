@@ -4,7 +4,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>${stand.name}</title>
+    <title>${stand.name} Standen</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
           integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -30,7 +30,24 @@
     <div class="row m-3">
         <div class="col">
             <div class="text-center">
-                <div class="text-dark font-weight-bold">Du ga <span><font color="#b8860b" > ${vote} </font></span> stjerner til ${stand.name}-standen</div>
+                <div class="text-dark font-weight-bold">Du ga <span><font color="#b8860b"> ${vote} </font></span>
+                    stjerner til ${stand.name}-standen
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row m-2">
+        <div class="col-6">
+            <div class="text-center">
+                <img src="${stand.imageurl}" class="img-fluid "/>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="text-center align-content-center">
+                <p style="font-size: larger; font-weight: bold">Total score: <span style="font-size: xx-large;color: gold">${avg}</span></p>
             </div>
         </div>
     </div>

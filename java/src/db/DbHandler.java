@@ -2,11 +2,10 @@ package db;
 
 import Entities.Stand;
 import Entities.Vote;
-
-import javax.ejb.Stateless;
 import java.sql.*;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 
-@Stateless
 public class DbHandler {
 
     private static String url = "jdbc:postgresql://data1.hib.no:5432/h571525";
@@ -15,8 +14,6 @@ public class DbHandler {
 
     public DbHandler() {
     }
-
-    //TODO - all methods to access db
 
     /**
      * Inserts new stand into database - tested:OK
@@ -41,6 +38,11 @@ public class DbHandler {
         }
     }
 
+    /**
+     * Finds stand in database based on the stands id
+     * @param id
+     * @return
+     */
     public synchronized Stand getStand(int id) {
         Stand stand = null;
 
@@ -65,6 +67,12 @@ public class DbHandler {
         }
     }
 
+    /**
+     * Finds a users vote for a stand.
+     * @param expouser
+     * @param standId
+     * @return
+     */
     public synchronized Vote getVoteByUserForStand(String expouser, int standId) {
         Vote vote = null;
 
@@ -90,6 +98,13 @@ public class DbHandler {
             return vote;
         }
     }
+
+    /**
+     * Inserts new vote into database
+     * @param expouser
+     * @param standId
+     * @param vote
+     */
     public synchronized void newVote(String expouser, int standId, int vote) {
         try {
             Class.forName("org.postgresql.Driver");
@@ -105,7 +120,13 @@ public class DbHandler {
         }
     }
 
-    public void updateVote(String expouser, int standId, int newVote) {
+    /**
+     * Updates vote in database.
+     * @param expouser
+     * @param standId
+     * @param newVote
+     */
+    public synchronized void updateVote(String expouser, int standId, int newVote) {
         try {
             Class.forName("org.postgresql.Driver");
             Connection connection = DriverManager.getConnection(url, user, password);
@@ -117,6 +138,33 @@ public class DbHandler {
             connection.close();
         } catch (SQLException | ClassNotFoundException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Returns the average score of the spesified stand in format '0.0' fx '4.7'
+     * @param standId
+     * @return double
+     */
+    public synchronized double findAverageVote(int standId) {
+        double avg = 0.0;
+        try {
+            Class.forName("org.postgresql.Driver");
+            Connection connection = DriverManager.getConnection(url, user, password);
+            PreparedStatement pstmt = connection.prepareStatement("SELECT AVG(score) FROM expo.vote WHERE stand=?");
+            pstmt.setInt(1, standId);
+            ResultSet resultSet = pstmt.executeQuery();
+            while (resultSet.next()) {
+               avg = resultSet.getDouble(1);
+            }
+            connection.close();
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }finally {
+           DecimalFormat df = new DecimalFormat("0.0");
+           String avgFormattedStr = df.format(avg).replaceAll(",",".");
+           double formattedAvg = Double.parseDouble(avgFormattedStr);
+           return formattedAvg;
         }
     }
 }

@@ -2,9 +2,6 @@ package login;
 
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import java.net.HttpCookie;
-import java.nio.charset.Charset;
 import java.util.Arrays;
 import java.util.Random;
 
@@ -21,7 +18,7 @@ public class CookieHandler {
         String generatedString = "";
         Random random = new Random();
 
-        for(int i = 0; i < 50; i++){
+        for (int i = 0; i < 50; i++) {
             generatedString += chars[random.nextInt(chars.length)];
         }
 
@@ -30,10 +27,14 @@ public class CookieHandler {
     }
 
     public static Cookie findCookie(HttpServletRequest request) {
-        return Arrays.stream(request.getCookies())
-                .filter(a -> a.getName().equals(Common.USER))
-                .findAny()
-                .orElse(null);
+        try {
+            return Arrays.stream(request.getCookies())
+                    .filter(a -> a.getName().equals(Common.USER))
+                    .findAny()
+                    .orElse(null);
+        } catch (Exception e) {
+            return null;
+        }
     }
 
 }

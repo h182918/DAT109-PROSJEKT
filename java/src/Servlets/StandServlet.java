@@ -32,6 +32,7 @@ public class StandServlet extends HttpServlet {
 
         if(userCookie == null) { //user has no cookie -> make new
             userCookie = CookieHandler.newCookie();
+            userCookie.setMaxAge(60*60*24*365);
             response.addCookie(userCookie);
         }
 
@@ -48,15 +49,12 @@ public class StandServlet extends HttpServlet {
         Vote vote = db.getVoteByUserForStand(userCookie.getValue(),standId);
         if(vote != null) { // vote for stand exists
             db.updateVote(userCookie.getValue(),standId,newVote);
-            vote = db.getVoteByUserForStand(userCookie.getValue(),standId); //get updated vote
         } else {
             db.newVote(userCookie.getValue(),standId,newVote);
         }
 
-        request.setAttribute("stand",stand);
-        request.setAttribute("vote",vote);
         //send to result servlet.
-        response.sendRedirect("ResultServlet?standId="+stand.getId()+"&vote="+vote.getScore());
+        response.sendRedirect("ResultServlet?standId="+standId+"&vote="+newVote);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

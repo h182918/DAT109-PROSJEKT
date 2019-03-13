@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="EXPO2019">
+    <output-path>$PROJECT_DIR$/artifacts/EXPO2019</output-path>
+    <root id="archive" name="EXPO2019.war">
+      <element id="artifact" artifact-name="EXPO" />
+      <element id="dir-copy" path="$PROJECT_DIR$/WebContent/images" />
+    </root>
+  </artifact>
+</component>

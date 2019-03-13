@@ -11,6 +11,8 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Java EE 5-Java EE 5" />
           <element id="library" level="project" name="lib" />
+          <element id="library" level="module" name="JUnit4" module-name="DAT109-PROSJEKT" />
+          <element id="library" level="project" name="Maven: Arquillian JUnit:1.4.1.Final" />
         </element>
       </element>
       <element id="javaee-facet-resources" facet="DAT109-PROSJEKT/ejb/EJB" />
