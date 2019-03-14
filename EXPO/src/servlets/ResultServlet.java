@@ -14,6 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	DbHandler db;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -24,10 +25,10 @@ public class ResultServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String standIdstr = request.getParameter("standId");
 		int standId = Integer.parseInt(standIdstr);
-		Stand stand = DbHandler.getStand(standId);
+		Stand stand = db.getStand(standId);
 		
 
-		double avg = DbHandler.findAverageVote(standId);
+		double avg = db.findAverageVote(standId);
 
 		String vote = request.getParameter("vote");
 
@@ -35,5 +36,13 @@ public class ResultServlet extends HttpServlet {
 		request.setAttribute("stand", stand);
 		request.setAttribute("vote", vote);
 		request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request, response);
+	}
+	
+	@Override
+	public void init() {
+		String url = getServletContext().getInitParameter("DBurl");
+		String user = getServletContext().getInitParameter("DBuser");
+		String password = getServletContext().getInitParameter("DBPW");
+		db = new DbHandler(url, user, password);
 	}
 }

@@ -5,6 +5,8 @@ import entities.Vote;
 import java.sql.*;
 import java.text.DecimalFormat;
 
+import javax.servlet.ServletContext;
+
 /**
  * The point of this class is to handle all transaction logic to/from the database.
  * All imports and exports to/from database has to go through this class.
@@ -12,11 +14,18 @@ import java.text.DecimalFormat;
  */
 public class DbHandler {
 
-	private static String url = "jdbc:postgresql://data1.hib.no:5432/h571525";
-	private static String user = "h571525";
-	private static String password = "pass";
+//	private static String url = "jdbc:postgresql://data1.hib.no:5432/h571525";
+//	private static String user = "h571525";
+//	private static String password = "pass";
 
-	public DbHandler() {
+	private static String url;
+	private static String user;
+	private static String password;
+
+	public DbHandler(String DBurl, String DBuser, String DBPW) {
+		url = DBurl;
+		user = DBuser;
+		password = DBPW;
 	}
 
 	//TODO - For admin: Get all the stands and their total score
@@ -26,7 +35,7 @@ public class DbHandler {
 	 *
 	 * @param stand
 	 */
-	public static synchronized void newStand(Stand stand) {
+	public synchronized void newStand(Stand stand) {
 		{
 			try {
 				Class.forName("org.postgresql.Driver");
@@ -52,7 +61,7 @@ public class DbHandler {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	public static synchronized Stand getStand(int id) {
+	public synchronized Stand getStand(int id) {
 		Stand stand = null;
 
 		try {
@@ -84,7 +93,7 @@ public class DbHandler {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	public static synchronized Vote getVoteByUserForStand(String expouser, int standId) {
+	public synchronized Vote getVoteByUserForStand(String expouser, int standId) {
 		Vote vote = null;
 
 		try {
@@ -118,7 +127,7 @@ public class DbHandler {
 	 * @param standId
 	 * @param vote
 	 */
-	public static synchronized void newVote(String expouser, int standId, int vote) {
+	public synchronized void newVote(String expouser, int standId, int vote) {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -141,7 +150,7 @@ public class DbHandler {
 	 * @param standId
 	 * @param newVote
 	 */
-	public static synchronized void updateVote(String expouser, int standId, int newVote) {
+	public synchronized void updateVote(String expouser, int standId, int newVote) {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -164,7 +173,7 @@ public class DbHandler {
 	 * @return double
 	 */
 	@SuppressWarnings("finally")
-	public static synchronized double findAverageVote(int standId) {
+	public synchronized double findAverageVote(int standId) {
 		double avg = 0.0;
 		try {
 			Class.forName("org.postgresql.Driver");

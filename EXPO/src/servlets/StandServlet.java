@@ -1,5 +1,6 @@
 package servlets;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -15,7 +16,7 @@ import java.io.IOException;
 @WebServlet(name = "StandServlet", urlPatterns = "/Stand")
 public class StandServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	DbHandler db;
 	/**
 	 * doPost(..) handles the users vote for the stand. It receives the parameters
 	 * for the vote and stores the vote in the database.
@@ -28,6 +29,7 @@ public class StandServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// Find usercookie
 		Cookie userCookie = CookieHandler.findCookie(request);
+		
 
 		if (userCookie == null) { // user has no cookie -> make new
 			userCookie = CookieHandler.newCookie();
@@ -49,11 +51,11 @@ public class StandServlet extends HttpServlet {
 		int standId = Integer.parseInt(standIdStr);
 
 		// Save new vote in db or update old
-		Vote vote = DbHandler.getVoteByUserForStand(userCookie.getValue(), standId);
+		Vote vote = db.getVoteByUserForStand(userCookie.getValue(), standId);
 		if (vote != null) { // vote for stand exists
-			DbHandler.updateVote(userCookie.getValue(), standId, newVote);
+			db.updateVote(userCookie.getValue(), standId, newVote);
 		} else {
-			DbHandler.newVote(userCookie.getValue(), standId, newVote);
+			db.newVote(userCookie.getValue(), standId, newVote);
 		}
 
 		// send to result servlet.
@@ -77,7 +79,7 @@ public class StandServlet extends HttpServlet {
 		int standId = Integer.parseInt(standIdStr);
 
 		// find Stand in db and setup attribute "stand"
-		Stand stand = DbHandler.getStand(standId);
+		Stand stand = db.getStand(standId);
 		request.setAttribute("stand", stand);
 
 		// Find users-cookie if present.
@@ -85,10 +87,18 @@ public class StandServlet extends HttpServlet {
 
 		if (userCookie != null) {
 			// If user has voted on stand before, find vote
-			Vote vote = DbHandler.getVoteByUserForStand(userCookie.getValue(), standId);
+			Vote vote = db.getVoteByUserForStand(userCookie.getValue(), standId);
 			request.setAttribute("vote", vote);
 		}
 
 		request.getRequestDispatcher("WEB-INF/jsp/stand.jsp").forward(request, response);
+	}
+	
+	@Override
+	public void init() {
+		String url = getServletContext().getInitParameter("DBURL");
+		String user = getServletContext().getInitParameter("DBuser");
+		String password = getServletContext().getInitParameter("DBPW");
+		db = new DbHandler(url, user, password);
 	}
 }

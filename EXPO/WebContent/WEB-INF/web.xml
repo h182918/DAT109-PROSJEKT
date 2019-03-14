@@ -24,4 +24,16 @@
     <servlet-name>AdminServlet</servlet-name>
     <url-pattern>/admin</url-pattern>
   </servlet-mapping>
+  <context-param>
+    <param-name>DBURL</param-name>
+    <param-value>jdbc:postgresql://data1.hib.no:5432/h571525</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBuser</param-name>
+    <param-value>h571525</param-value>
+  </context-param>
+  <context-param>
+    <param-name>DBPW</param-name>
+    <param-value>pass</param-value>
+  </context-param>
 </web-app>
