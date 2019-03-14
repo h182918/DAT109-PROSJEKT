@@ -1,26 +1,16 @@
 package servlets;
 
-import entities.Stand;
-import entities.Vote;
-import db.DbHandler;
-import login.CookieHandler;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import db.DbHandler;
+import entities.Stand;
+import entities.Vote;
+import login.CookieHandler;
 import java.io.IOException;
-
-/**
- * This servlet handles the connection between the QR-code and the website for
- * voting on the spesific stand. After the stand has been votet for it updates
- * the database through DbHandler and redirects to the ResultServlet.
- * 
- * the jsp-file connected to this servlet is the stand.jsp file.
- *
- */
 
 @WebServlet(name = "StandServlet", urlPatterns = "/Stand")
 public class StandServlet extends HttpServlet {
