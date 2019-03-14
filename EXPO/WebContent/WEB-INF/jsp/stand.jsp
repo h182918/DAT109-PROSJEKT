@@ -47,11 +47,10 @@
     </div>
 </div>
 <div class="container">
-    <div class="row m-2">
+    <div class="row my-2">
         <c:forEach var="i" begin="1" end="5">
-            <div class="col">
-                <img id="star${i}" onclick="vote(${i})"
-                     src="${pageContext.servletContext.contextPath}/images/emptyStar.jpeg" class="img-fluid"/>
+            <div class="col nopadding">
+                <p class="text-center" id="star${i}" style="color:lightgrey;font-size:10vw" onclick="vote(${i})">&#9733;</p>
             </div>
         </c:forEach>
     </div>
