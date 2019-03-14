@@ -10,13 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-/**
- * The purpose of the Result Servlet is to find the total score for the
- * spesified stand and forward the result to result.jsp
- * 
- * It is the last link of the current webapp and has only got the doGet() method implemented
- *
- */
 
 @WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
