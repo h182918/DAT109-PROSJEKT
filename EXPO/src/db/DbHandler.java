@@ -6,8 +6,8 @@ import java.sql.*;
 import java.text.DecimalFormat;
 
 /**
- * The point of this class is to handle all transaction logic to the database.
- * All imports and exports to/from database has to go through this class
+ * The point of this class is to handle all transaction logic to/from the database.
+ * All imports and exports to/from database has to go through this class.
  *
  */
 public class DbHandler {
@@ -26,7 +26,7 @@ public class DbHandler {
 	 *
 	 * @param stand
 	 */
-	public synchronized void newStand(Stand stand) {
+	public static synchronized void newStand(Stand stand) {
 		{
 			try {
 				Class.forName("org.postgresql.Driver");
@@ -52,7 +52,7 @@ public class DbHandler {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	public synchronized Stand getStand(int id) {
+	public static synchronized Stand getStand(int id) {
 		Stand stand = null;
 
 		try {
@@ -84,7 +84,7 @@ public class DbHandler {
 	 * @return
 	 */
 	@SuppressWarnings("finally")
-	public synchronized Vote getVoteByUserForStand(String expouser, int standId) {
+	public static synchronized Vote getVoteByUserForStand(String expouser, int standId) {
 		Vote vote = null;
 
 		try {
@@ -118,7 +118,7 @@ public class DbHandler {
 	 * @param standId
 	 * @param vote
 	 */
-	public synchronized void newVote(String expouser, int standId, int vote) {
+	public static synchronized void newVote(String expouser, int standId, int vote) {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -141,7 +141,7 @@ public class DbHandler {
 	 * @param standId
 	 * @param newVote
 	 */
-	public synchronized void updateVote(String expouser, int standId, int newVote) {
+	public static synchronized void updateVote(String expouser, int standId, int newVote) {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
@@ -164,7 +164,7 @@ public class DbHandler {
 	 * @return double
 	 */
 	@SuppressWarnings("finally")
-	public synchronized double findAverageVote(int standId) {
+	public static synchronized double findAverageVote(int standId) {
 		double avg = 0.0;
 		try {
 			Class.forName("org.postgresql.Driver");
