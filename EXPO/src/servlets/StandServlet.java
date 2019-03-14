@@ -26,14 +26,6 @@ import java.io.IOException;
 public class StandServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DbHandler db;
-
-	@Override
-	public void init() throws ServletException {
-		super.init();
-		db = new DbHandler();
-	}
-
 	/**
 	 * doPost(..) handles the users vote for the stand. It receives the parameters
 	 * for the vote and stores the vote in the database.
@@ -65,14 +57,13 @@ public class StandServlet extends HttpServlet {
 		// get standId from form and find stand in database
 		String standIdStr = request.getParameter("standId");
 		int standId = Integer.parseInt(standIdStr);
-		Stand stand = db.getStand(standId);
 
 		// Save new vote in db or update old
-		Vote vote = db.getVoteByUserForStand(userCookie.getValue(), standId);
+		Vote vote = DbHandler.getVoteByUserForStand(userCookie.getValue(), standId);
 		if (vote != null) { // vote for stand exists
-			db.updateVote(userCookie.getValue(), standId, newVote);
+			DbHandler.updateVote(userCookie.getValue(), standId, newVote);
 		} else {
-			db.newVote(userCookie.getValue(), standId, newVote);
+			DbHandler.newVote(userCookie.getValue(), standId, newVote);
 		}
 
 		// send to result servlet.
@@ -96,7 +87,7 @@ public class StandServlet extends HttpServlet {
 		int standId = Integer.parseInt(standIdStr);
 
 		// find Stand in db and setup attribute "stand"
-		Stand stand = db.getStand(standId);
+		Stand stand = DbHandler.getStand(standId);
 		request.setAttribute("stand", stand);
 
 		// Find users-cookie if present.
@@ -104,7 +95,7 @@ public class StandServlet extends HttpServlet {
 
 		if (userCookie != null) {
 			// If user has voted on stand before, find vote
-			Vote vote = db.getVoteByUserForStand(userCookie.getValue(), standId);
+			Vote vote = DbHandler.getVoteByUserForStand(userCookie.getValue(), standId);
 			request.setAttribute("vote", vote);
 		}
 

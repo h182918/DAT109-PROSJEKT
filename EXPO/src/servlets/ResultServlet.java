@@ -22,17 +22,6 @@ import java.io.IOException;
 public class ResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	private DbHandler db;
-
-	/**
-	 * Creates one DbHandler for all to use.
-	 */
-	@Override
-	public void init() throws ServletException {
-		super.init();
-		db = new DbHandler();
-	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// Not needed, but can be used to fx. find old votes for the user and thereby create a loop for the webapp. 
@@ -42,9 +31,10 @@ public class ResultServlet extends HttpServlet {
 			throws ServletException, IOException {
 		String standIdstr = request.getParameter("standId");
 		int standId = Integer.parseInt(standIdstr);
-		Stand stand = db.getStand(standId);
+		Stand stand = DbHandler.getStand(standId);
+		
 
-		double avg = db.findAverageVote(standId);
+		double avg = DbHandler.findAverageVote(standId);
 
 		String vote = request.getParameter("vote");
 
