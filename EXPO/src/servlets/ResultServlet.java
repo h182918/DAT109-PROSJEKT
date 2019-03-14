@@ -1,10 +1,8 @@
 package servlets;
 
 import entities.Stand;
-import entities.Vote;
 import db.DbHandler;
 
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,8 +12,9 @@ import java.io.IOException;
 
 @WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
-
-    private DbHandler db;
+	private static final long serialVersionUID = 1L;
+	
+	private DbHandler db;
 
     @Override
     public void init() throws ServletException {

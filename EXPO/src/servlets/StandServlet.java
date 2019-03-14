@@ -3,7 +3,6 @@ package servlets;
 import entities.Stand;
 import entities.Vote;
 import db.DbHandler;
-import login.Common;
 import login.CookieHandler;
 
 import javax.servlet.ServletException;
@@ -13,12 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Arrays;
 
 @WebServlet(name = "StandServlet", urlPatterns = "/Stand")
 public class StandServlet extends HttpServlet {
-
-    private DbHandler db;
+	private static final long serialVersionUID = 1L;
+	
+	private DbHandler db;
 
     @Override
     public void init() throws ServletException {

@@ -4,7 +4,6 @@ import entities.Stand;
 import entities.Vote;
 import java.sql.*;
 import java.text.DecimalFormat;
-import java.text.NumberFormat;
 
 public class DbHandler {
 
@@ -43,7 +42,8 @@ public class DbHandler {
      * @param id
      * @return
      */
-    public synchronized Stand getStand(int id) {
+    @SuppressWarnings("finally")
+	public synchronized Stand getStand(int id) {
         Stand stand = null;
 
         try {
@@ -73,7 +73,8 @@ public class DbHandler {
      * @param standId
      * @return
      */
-    public synchronized Vote getVoteByUserForStand(String expouser, int standId) {
+    @SuppressWarnings("finally")
+	public synchronized Vote getVoteByUserForStand(String expouser, int standId) {
         Vote vote = null;
 
         try {
@@ -146,7 +147,8 @@ public class DbHandler {
      * @param standId
      * @return double
      */
-    public synchronized double findAverageVote(int standId) {
+    @SuppressWarnings("finally")
+	public synchronized double findAverageVote(int standId) {
         double avg = 0.0;
         try {
             Class.forName("org.postgresql.Driver");
