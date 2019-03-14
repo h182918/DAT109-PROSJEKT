@@ -61,7 +61,7 @@
                 <form name="sendVote" id="sendVote" method="post" action="Stand">
                     <input type="hidden" value="0" name="vote" id="vote"/>
                     <input type="hidden" value="${stand.id}" name="standId" id="StandId"/>
-                    <button type="submit" form="sendVote" class="btn btn-dark px-5">Stem!</button>
+                    <button tye="submit" form="sendVote" class="btn btn-dark px-5">Stem!</button>
                 </form>
             </div>
         </div>
