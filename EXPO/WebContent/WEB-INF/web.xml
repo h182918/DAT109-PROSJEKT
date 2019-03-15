@@ -16,7 +16,7 @@
     <servlet-name>ResultServlet</servlet-name>
     <url-pattern>/ResultServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>AdminServlet</servlet-name>
     <servlet-class>servlets.AdminServlet</servlet-class>
   </servlet>
@@ -36,4 +36,5 @@
     <param-name>DBPW</param-name>
     <param-value>pass</param-value>
   </context-param>
+
 </web-app>

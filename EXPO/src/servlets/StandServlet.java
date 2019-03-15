@@ -100,5 +100,6 @@ public class StandServlet extends HttpServlet {
 		String user = getServletContext().getInitParameter("DBuser");
 		String password = getServletContext().getInitParameter("DBPW");
 		db = new DbHandler(url, user, password);
+		ResultServlet.start(db);
 	}
 }

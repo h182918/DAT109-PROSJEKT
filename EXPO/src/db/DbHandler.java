@@ -13,11 +13,6 @@ import javax.servlet.ServletContext;
  *
  */
 public class DbHandler {
-
-//	private static String url = "jdbc:postgresql://data1.hib.no:5432/h571525";
-//	private static String user = "h571525";
-//	private static String password = "pass";
-
 	private static String url;
 	private static String user;
 	private static String password;

@@ -14,7 +14,7 @@ import java.io.IOException;
 @WebServlet(name = "ResultServlet", urlPatterns = "/ResultServlet")
 public class ResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	DbHandler db;
+	static DbHandler db;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -29,7 +29,6 @@ public class ResultServlet extends HttpServlet {
 		
 
 		double avg = db.findAverageVote(standId);
-
 		String vote = request.getParameter("vote");
 
 		request.setAttribute("avg", avg);
@@ -38,11 +37,7 @@ public class ResultServlet extends HttpServlet {
 		request.getRequestDispatcher("WEB-INF/jsp/result.jsp").forward(request, response);
 	}
 	
-	@Override
-	public void init() {
-		String url = getServletContext().getInitParameter("DBurl");
-		String user = getServletContext().getInitParameter("DBuser");
-		String password = getServletContext().getInitParameter("DBPW");
-		db = new DbHandler(url, user, password);
+	public static void start(DbHandler db) {
+		ResultServlet.db = db;
 	}
 }
