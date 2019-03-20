@@ -2,8 +2,12 @@ package db;
 
 import entities.Stand;
 import entities.Vote;
+import entities.standOverview;
 import java.sql.*;
 import java.text.DecimalFormat;
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * The point of this class is to handle all transaction logic to/from the database.
@@ -183,6 +187,31 @@ public class DbHandler {
 			String avgFormattedStr = df.format(avg).replaceAll(",", ".");
 			double formattedAvg = Double.parseDouble(avgFormattedStr);
 			return formattedAvg;
+		}
+	}
+	
+	@SuppressWarnings("finally")
+	public static synchronized List<standOverview> getAllVotes() {
+		standOverview stand;
+		List<standOverview> overview = new ArrayList<standOverview>();
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Standoverview");
+			ResultSet resultSet = pstmt.executeQuery();
+			while (resultSet.next()) {
+				stand = new standOverview();
+				stand.setName((String)resultSet.getObject(1));
+				stand.setAverage((Double)resultSet.getObject(2));
+				stand.setTotalScore((int)resultSet.getObject(3));
+				overview.add(stand);
+				
+			}
+			connection.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			return overview;
 		}
 	}
 }
