@@ -8,42 +8,71 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.DbHandler;
+import entities.Stand;
+import login.LoginUtil;
+
 /**
  * Servlet implementation class LoginServlet
  */
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public LoginServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	private String adminUser;
+	private String adminPass;
 
 	/**
 	 * @see Servlet#init(ServletConfig)
 	 */
 	public void init(ServletConfig config) throws ServletException {
-		// TODO Auto-generated method stub
+		adminUser = config.getInitParameter("adminUser");
+		adminPass = config.getInitParameter("adminPassword");
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		
+		//check for errors
+		if(request.getParameter("error") != null) {
+			request.setAttribute("error", "Noe gikk galt, prøv igjen");
+		}
+		
+		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String epostIn = request.getParameter("epost");
+		String passwordIn = request.getParameter("password");
+		boolean isAdmin = epostIn.equals(adminUser) && passwordIn.equals(adminPass);
+
+		// user is admin
+		if (isAdmin) {
+			response.sendRedirect("admin");
+			return;
+		}
+
+		Stand stand = DbHandler.findStand(epostIn);
+		if (stand == null) { //Stand not found
+			response.sendRedirect("login" + "?error=1"); 
+			return;
+		}
+
+		String pin = stand.getPin();
+		if (pin.equals(passwordIn)) {
+			LoginUtil.loginStandAdmin(request, stand);
+			response.sendRedirect("StandAdminServlet");
+		}
+
 	}
 
 }

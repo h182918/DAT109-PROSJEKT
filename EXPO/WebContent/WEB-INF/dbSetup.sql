@@ -5,8 +5,10 @@ set SEARCH_PATH to expo;
 
 create table stand (
 standId serial,
-name varchar(50) unique not null,
+name varchar(50) unique,
 imageurl varchar(255),
+epostadmin varchar(50) unique not null,
+pin char(4) not null,
 constraint standId primary key (standId)
 );
 
