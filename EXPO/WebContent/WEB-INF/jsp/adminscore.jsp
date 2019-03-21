@@ -36,6 +36,8 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.servletContext.contextPath}/admin?jsp=1">Oversikt<span
 						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.servletContext.contextPath}/logout">Logg ut</a></li>
 			</ul>
 		</div>
 	</nav>
@@ -81,7 +83,7 @@
 			</tbody>
 		</table>
 	</div>
-	
+
 	<script type="text/javascript"
 		src="${pageContext.servletContext.contextPath}/js/sortTable.js"></script>
 
