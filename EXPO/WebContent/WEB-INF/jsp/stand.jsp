@@ -50,7 +50,7 @@
     <div class="row my-2">
         <c:forEach var="i" begin="1" end="5">
             <div class="col nopadding">
-                <p class="text-center" id="star${i}" style="color:lightgrey;font-size:10vw" onclick="vote(${i})">&#9733;</p>
+                <p class="text-center" id="star${i}" style="color:lightgrey;font-size:10vw;cursor:pointer" onclick="vote(${i})">&#9733;</p>
             </div>
         </c:forEach>
     </div>

@@ -36,9 +36,11 @@ public class DbHandler {
 				Class.forName("org.postgresql.Driver");
 				Connection connection = DriverManager.getConnection(url, user, password);
 				PreparedStatement pstmt = connection
-						.prepareStatement("INSERT INTO expo.stand (name,imageurl) values (?,?)");
+						.prepareStatement("INSERT INTO expo.stand (name,imageurl,epostadmin,pin) values (?,?,?,?)");
 				pstmt.setString(1, stand.getName());
 				pstmt.setString(2, stand.getImageurl());
+				pstmt.setString(3, stand.getEpostadmin());
+				pstmt.setString(4, stand.getPin());
 				pstmt.execute();
 				connection.close();
 			} catch (SQLException e) {

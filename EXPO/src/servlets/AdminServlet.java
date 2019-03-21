@@ -44,7 +44,7 @@ public class AdminServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO
+		// TODO - update stand based on parameters from form. 
 	}
 
 }
