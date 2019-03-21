@@ -168,13 +168,13 @@ public class DbHandler {
 	 * @return double
 	 */
 	@SuppressWarnings("finally")
-	public static synchronized double findAverageVote(int standId) {
+	public static synchronized double findAverageVote(Stand stand) {
 		double avg = 0.0;
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement pstmt = connection.prepareStatement("SELECT AVG(score) FROM expo.vote WHERE stand=?");
-			pstmt.setInt(1, standId);
+			PreparedStatement pstmt = connection.prepareStatement("SELECT avg FROM standoverview WHERE name=?");
+			pstmt.setString(1, stand.getName());
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				avg = resultSet.getDouble(1);
@@ -212,6 +212,30 @@ public class DbHandler {
 			e.printStackTrace();
 		} finally {
 			return overview;
+		}
+	}
+
+	@SuppressWarnings("finally")
+	public static Stand findStand(String epostIn) {
+		Stand stand = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM expo.stand where epostadmin = ?");
+			ResultSet resultSet = pstmt.executeQuery();
+			while (resultSet.next()) {
+				stand = new Stand();
+				stand.setId((int)resultSet.getObject(1));
+				stand.setName((String) resultSet.getObject(2));
+				stand.setImageurl((String)resultSet.getObject(3));
+				stand.setEpostadmin((String) resultSet.getObject(4));
+				stand.setPin((String) resultSet.getObject(5));			
+			}
+			connection.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			return stand;
 		}
 	}
 }

@@ -26,8 +26,8 @@ public class ResultServlet extends HttpServlet {
 		int standId = Integer.parseInt(standIdstr);
 		Stand stand = DbHandler.getStand(standId);
 		
-
-		double avg = DbHandler.findAverageVote(standId);
+		
+		double avg = DbHandler.findAverageVote(stand);
 
 		String vote = request.getParameter("vote");
 
