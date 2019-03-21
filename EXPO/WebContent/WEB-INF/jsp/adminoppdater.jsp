@@ -36,21 +36,23 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.servletContext.contextPath}/admin?jsp=1">Oversikt<span
 						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.servletContext.contextPath}/logout">Logg ut</a></li>
 			</ul>
+
+
 		</div>
 	</nav>
 
-<div class="container">
-    <div class="row m-2">
-        <div class="col-4">
-        </div>
-        <div class="col-4">
-            <img src="${stand.imageurl}" class="img-fluid "/>
-        </div>
-        <div class="col-4">
-        </div>
-    </div>
-</div>
+	<div class="container">
+		<div class="row m-2">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<img src="${stand.imageurl}" class="img-fluid " />
+			</div>
+			<div class="col-4"></div>
+		</div>
+	</div>
 
 	<form method="post" class="form mx-5"
 		action="${pageContext.servletContext.contextPath}/admin">
@@ -84,7 +86,7 @@
 		<div class="form-group row">
 			<label for="pin" class="col-sm-2 col-form-label">Pin: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="pin" placeholder="epost"
+				<input type="text" class="form-control" id="pin" placeholder="pin"
 					value="${stand.pin}">
 			</div>
 		</div>
@@ -101,7 +103,7 @@
 				<button type="submit" class="btn btn-primary float-right px-5 py-2">Lagre</button>
 			</div>
 		</div>
-		
+
 	</form>
 
 </body>

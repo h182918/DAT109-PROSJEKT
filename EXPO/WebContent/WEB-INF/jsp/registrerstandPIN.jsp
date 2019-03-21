@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Registrer</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -40,21 +40,17 @@
 				<p>
 					<font color="red">${error}</font>
 				</p>
-				<form method="post" action="login">
+				<form method="post" action="RegistrerStand">
 					<div class="form-group">
-						<label for="email">Epost</label> <input type="email"
-							class="form-control" name="email" aria-describedby="emailHelp"
-							placeholder="Epost" value="admin@admin.no" required>
+						<label for="email">Pin:</label> <input type="password"
+							class="form-control" name="pinIn" aria-describedby="passwordHelp"
+							placeholder="Pin" required>
 					</div>
-					<div class="form-group">
-						<label for="password">Passord</label> <input type="password"
-							class="form-control" name="password" placeholder="Passord"
-							value="admin1234" required>
-					</div>
-					<button type="submit" class="btn btn-primary">Logg inn</button>
-					<a href="${pageContext.servletContext.contextPath}/RegistrerStand" class="btn btn-dark ml-2">Registrer Stand</a>
+					<input type="hidden" name="email" value="${email}">
+					<input type="hidden" name="pin" value="${pin}">
+					<button type="submit" class="btn btn-primary">Registrer</button>
 				</form>
-				
+
 			</div>
 			<div class="col "></div>
 		</div>

@@ -12,7 +12,6 @@ import db.DbHandler;
 import entities.Stand;
 import login.LoginUtil;
 
-
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,12 +33,12 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		//check for errors
-		if(request.getParameter("error") != null) {
+
+		// check for errors
+		if (request.getParameter("error") != null) {
 			request.setAttribute("error", "Noe gikk galt, prøv igjen");
 		}
-		
+
 		request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 	}
 
@@ -61,15 +60,17 @@ public class LoginServlet extends HttpServlet {
 		}
 
 		Stand stand = DbHandler.findStand(epostIn);
-		if (stand == null) { //Stand not found
-			response.sendRedirect("login" + "?error=1"); 
+		if (stand == null) { // Stand not found
+			response.sendRedirect("login" + "?error=1");
 			return;
 		}
 
 		String pin = stand.getPin();
 		if (pin.equals(passwordIn)) {
 			LoginUtil.loginStandAdmin(request, stand);
-			response.sendRedirect("StandAdminServlet");
+			response.sendRedirect("StandAdmin");
+		} else {
+			response.sendRedirect("login?error=1");
 		}
 
 	}
