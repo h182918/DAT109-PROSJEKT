@@ -33,7 +33,8 @@
 		</button>
 		<div class="collapse navbar-collapse" id="navbarNav">
 			<ul class="navbar-nav">
-				<li class="nav-item active"><a class="nav-link" href="${pageContext.servletContext.contextPath}/admin?jsp=1">Oversikt<span
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.servletContext.contextPath}/admin?jsp=1">Oversikt<span
 						class="sr-only">(current)</span></a></li>
 			</ul>
 		</div>
@@ -52,33 +53,37 @@
 		</div>
 	</div>
 
-	<table class="table table-striped">
-		<thead>
-			<tr>
-				<th scope="col"></th>
-				<th scope="col">Stand</th>
-				<th scope="col">Score</th>
-				<th scope="col">Antall Stemmer</th>
-				<th scope="col"></th>
-			</tr>
-		</thead>
-		<tbody>
+	<div class="container">
 
-			<c:forEach items="${overview}" var="stand">
+		<table class="table table-striped" id="stands">
+			<thead>
 				<tr>
-					<td></td>
-					<th scope="row">${stand.stand.name}</th>
-					<td>${stand.average }</td>
-					<td>${stand.totalScore }</td>
-					<td><a
-						href="${pageContext.servletContext.contextPath}/admin?jsp=2&id=${stand.stand.id}"
-						class="btn btn-dark">Se</a></td>
+					<th scope="col" onclick="sortTableAlf(0)" style="cursor: pointer">Stand</th>
+					<th scope="col" onclick="sortTableNum(1)" style="cursor: pointer">Score</th>
+					<th scope="col" onclick="sortTableNum(2)" style="cursor: pointer">Antall
+						Stemmer</th>
+					<th scope="col"></th>
 				</tr>
-			</c:forEach>
+			</thead>
+			<tbody>
 
-		</tbody>
-	</table>
+				<c:forEach items="${overview}" var="stand">
+					<tr>
+						<td scope="row">${stand.stand.name}</td>
+						<td>${stand.average }</td>
+						<td>${stand.totalScore }</td>
+						<td><a
+							href="${pageContext.servletContext.contextPath}/admin?jsp=2&id=${stand.stand.id}"
+							class="btn btn-dark">Se</a></td>
+					</tr>
+				</c:forEach>
 
+			</tbody>
+		</table>
+	</div>
+	
+	<script type="text/javascript"
+		src="${pageContext.servletContext.contextPath}/js/sortTable.js"></script>
 
 </body>
 </html>

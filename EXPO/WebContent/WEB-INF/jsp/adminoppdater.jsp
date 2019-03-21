@@ -84,7 +84,7 @@
 		<div class="form-group row">
 			<label for="pin" class="col-sm-2 col-form-label">Pin: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="pin" placeholder="epost"
+				<input type="text" class="form-control" id="pin" placeholder="pin"
 					value="${stand.pin}">
 			</div>
 		</div>
