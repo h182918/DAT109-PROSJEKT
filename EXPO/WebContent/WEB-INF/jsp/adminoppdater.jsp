@@ -36,21 +36,23 @@
 				<li class="nav-item active"><a class="nav-link"
 					href="${pageContext.servletContext.contextPath}/admin?jsp=1">Oversikt<span
 						class="sr-only">(current)</span></a></li>
+				<li class="nav-item active"><a class="nav-link"
+					href="${pageContext.servletContext.contextPath}/logout">Logg ut</a></li>
 			</ul>
+
+
 		</div>
 	</nav>
 
-<div class="container">
-    <div class="row m-2">
-        <div class="col-4">
-        </div>
-        <div class="col-4">
-            <img src="${stand.imageurl}" class="img-fluid "/>
-        </div>
-        <div class="col-4">
-        </div>
-    </div>
-</div>
+	<div class="container">
+		<div class="row m-2">
+			<div class="col-4"></div>
+			<div class="col-4">
+				<img src="${stand.imageurl}" class="img-fluid " />
+			</div>
+			<div class="col-4"></div>
+		</div>
+	</div>
 
 	<form method="post" class="form mx-5"
 		action="${pageContext.servletContext.contextPath}/admin">
@@ -101,7 +103,7 @@
 				<button type="submit" class="btn btn-primary float-right px-5 py-2">Lagre</button>
 			</div>
 		</div>
-		
+
 	</form>
 
 </body>
