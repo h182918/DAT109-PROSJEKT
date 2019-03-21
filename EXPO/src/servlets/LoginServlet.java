@@ -12,9 +12,7 @@ import db.DbHandler;
 import entities.Stand;
 import login.LoginUtil;
 
-/**
- * Servlet implementation class LoginServlet
- */
+
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -51,13 +49,14 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		String epostIn = request.getParameter("epost");
+		String epostIn = request.getParameter("email");
 		String passwordIn = request.getParameter("password");
 		boolean isAdmin = epostIn.equals(adminUser) && passwordIn.equals(adminPass);
 
 		// user is admin
 		if (isAdmin) {
-			response.sendRedirect("admin");
+			LoginUtil.loginAdmin(request);
+			response.sendRedirect("admin?jsp=1");
 			return;
 		}
 

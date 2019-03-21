@@ -7,13 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import db.DbHandler;
-import entities.Stand;
-import login.LoginUtil;
-
-/**
- * Servlet implementation class StandAdminServlet
- */
 @WebServlet("/StandAdminServlet")
 public class StandAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -36,7 +29,7 @@ public class StandAdminServlet extends HttpServlet {
 	String image = request.getParameter("image");
 	String button = request.getParameter("button");
 	
-	//mangler metodene i DBhandler for å oppdatere database
+	//mangler metodene i DBhandler for ï¿½ oppdatere database
 	stand.setName(name);
 	stand.setImageurl(image);
 	

@@ -7,6 +7,14 @@
   <servlet-mapping>
     <servlet-name>StandServlet</servlet-name>
     <url-pattern>/Stand</url-pattern>
+  </servlet-mapping> 
+  <servlet>
+    <servlet-name>RegistrerStandServlet</servlet-name>
+    <servlet-class>servlets.RegistrerStandServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistrerStandServlet</servlet-name>
+    <url-pattern>/RegistrerStand</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ResultServlet</servlet-name>
