@@ -7,6 +7,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.DbHandler;
+import entities.Stand;
+import login.LoginUtil;
+
 /**
  * Servlet implementation class StandAdminServlet
  */
@@ -16,7 +20,7 @@ public class StandAdminServlet extends HttpServlet {
        
     
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(!LoginUTil.) {
+		if(!LoginUtil.standAdminIsLoggedIn(request)){
 			response.sendRedirect("LoginServlet"); //evt sende med error som parameter?
 			return;
 		}else {
@@ -24,9 +28,25 @@ public class StandAdminServlet extends HttpServlet {
 			}
 	}
 
-	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	String epost = request.getSession().getAttribute("epost");
+	Stand stand = DbHandler.findStand(epost);
+	String name = request.getParameter("name");
+	String image = request.getParameter("image");
+	String button = request.getParameter("button");
+	
+	//mangler metodene i DBhandler for å oppdatere database
+	stand.setName(name);
+	stand.setImageurl(image);
+	
+	if("Oppdater".equals(button)) {
+		//ordne QR kode
+		response.sendRedirect("/standAdminServlet");
+	}else if("Logg ut".equals(button)){
+		request.getSession(false);
+		response.sendRedirect("LoginServlet");
 	}
-
+	
+	}
 }

@@ -9,12 +9,12 @@
 </head>
 <body>
 <form action="processInput" method="post">
-<p align="right"><input type="submit" value="Logout"/></p>
+<p align="right"><input type="submit" name="button" value="Logg ut"/></p>
   <fieldset>
     <legend>Registrering av stand:</legend>
-    <p>Navn: <input type="text" name="navn" /></p>
+    <p>Navn: <input type="text" pattern="\^[A-ZÆØÅ]{3}[1-9]{3}$\" name="name" /></p>
     <p>ImageURL: <input type="url" name="image" /></p>
-    <p><input type="submit" value="Oppdater" /></p>
+    <p><input type="submit" name="button"value="Oppdater" /></p>
   </fieldset>
 </form>
 
