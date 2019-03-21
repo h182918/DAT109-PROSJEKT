@@ -190,6 +190,10 @@ public class DbHandler {
 		}
 	}
 	
+	/**
+	 * Returns all the votes as a list of standOverview objects
+	 * @return
+	 */
 	@SuppressWarnings("finally")
 	public static synchronized List<standOverview> getAllVotes() {
 		standOverview stand;
@@ -197,13 +201,13 @@ public class DbHandler {
 		try {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
-			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM Standoverview");
+			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM standoverview");
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				stand = new standOverview();
-				stand.setName((String)resultSet.getObject(1));
-				stand.setAverage((Double)resultSet.getObject(2));
-				stand.setTotalScore((int)resultSet.getObject(3));
+				stand.setStand(findStandByName((String)resultSet.getObject(1)));
+				stand.setAverage(resultSet.getDouble(2));
+				stand.setTotalScore((Long)resultSet.getObject(3));
 				overview.add(stand);
 				
 			}
@@ -215,6 +219,11 @@ public class DbHandler {
 		}
 	}
 
+	/**
+	 * Finds the stand in the database which is connected to the email address specified as a param.
+	 * @param epostIn
+	 * @return
+	 */
 	@SuppressWarnings("finally")
 	public static Stand findStand(String epostIn) {
 		Stand stand = null;
@@ -222,6 +231,37 @@ public class DbHandler {
 			Class.forName("org.postgresql.Driver");
 			Connection connection = DriverManager.getConnection(url, user, password);
 			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM expo.stand where epostadmin = ?");
+			pstmt.setString(1, epostIn);
+			ResultSet resultSet = pstmt.executeQuery();
+			while (resultSet.next()) {
+				stand = new Stand();
+				stand.setId((int)resultSet.getObject(1));
+				stand.setName((String) resultSet.getObject(2));
+				stand.setImageurl((String)resultSet.getObject(3));
+				stand.setEpostadmin((String) resultSet.getObject(4));
+				stand.setPin((String) resultSet.getObject(5));			
+			}
+			connection.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		} finally {
+			return stand;
+		}
+	}
+	
+	/**
+	 * Finds the stand in the database which is connected to the email address specified as a param.
+	 * @param epostIn
+	 * @return
+	 */
+	@SuppressWarnings("finally")
+	public static Stand findStandByName(String name) {
+		Stand stand = null;
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = connection.prepareStatement("SELECT * FROM expo.stand where name = ?");
+			pstmt.setString(1, name);
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				stand = new Stand();

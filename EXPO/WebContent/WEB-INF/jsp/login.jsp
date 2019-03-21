@@ -25,29 +25,36 @@
 
 	<div class="container">
 		<div class="row m-3">
-        <div class="col">
-            <div class="text-center my-4">
-                <img src="https://exhibition.bergenexpo.no/theme/img/site-logo.png?v=1.0.0" class="img"/>
-            </div>
-        </div>
-    </div>
-    
+			<div class="col">
+				<div class="text-center my-4">
+					<img
+						src="https://exhibition.bergenexpo.no/theme/img/site-logo.png?v=1.0.0"
+						class="img" />
+				</div>
+			</div>
+		</div>
+
 		<div class="row align-items-center">
 			<div class="col "></div>
 			<div class="col-md-6 col-sm-4 align-self-center">
-				<p><font color="red">${error}</font></p>
+				<p>
+					<font color="red">${error}</font>
+				</p>
 				<form method="post" action="login">
 					<div class="form-group">
 						<label for="email">Epost</label> <input type="email"
 							class="form-control" name="email" aria-describedby="emailHelp"
-							placeholder="Epost">
+							placeholder="Epost" value="admin@admin.no">
 					</div>
 					<div class="form-group">
 						<label for="password">Passord</label> <input type="password"
-							class="form-control" name="password" placeholder="Passord">
+							class="form-control" name="password" placeholder="Passord"
+							value="admin1234">
 					</div>
 					<button type="submit" class="btn btn-primary">Logg inn</button>
+					<a href="${pageContext.servletContext.contextPath}/RegistrerStand" class="btn btn-dark ml-2">Registrer Stand</a>
 				</form>
+				
 			</div>
 			<div class="col "></div>
 		</div>
