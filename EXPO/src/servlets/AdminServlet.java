@@ -12,12 +12,13 @@ import db.DbHandler;
 import entities.Stand;
 import entities.Vote;
 import entities.standOverview;
+import login.LoginUtil;
 
 @WebServlet(name = "AdminServlet", urlPatterns = "/admin")
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		if(LoginUtil.adminIsLoggedIn(request)) {
 			if(request.getParameter("jsp").equals("1")) {
 				List<standOverview> overview= DbHandler.getAllVotes();
@@ -29,11 +30,11 @@ public class AdminServlet extends HttpServlet {
 				request.setAttribute("stand", stand);
 				request.getRequestDispatcher("WEB-INF/jsp/adminoppdater.jsp").forward(request, response);
 			}else {
-				LoginUtil.InvalidateLogin(request, response);
+				LoginUtil.invalidateLogin(request, response);
 			}
 			
 		}else if(request.getSession() != null) {
-			LoginUtil.InvalidateLogin(request, response);
+			LoginUtil.invalidateLogin(request, response);
 		}else {
 			request.getRequestDispatcher("WEB-INF/jsp/login.jsp").forward(request, response);
 		}
