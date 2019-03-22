@@ -11,28 +11,35 @@ import javax.servlet.http.HttpServletResponse;
 public class StandAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public StandAdminServlet() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		if(!LoginUtil.standAdminIsLoggedIn(request)){
+			response.sendRedirect("LoginServlet"); //evt sende med error som parameter?
+			return;
+		}else {
+				request.getRequestDispatcher("WEB-INF/jsp/AdminStand.jsp").forward(request,response);
+			}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+	String epost = request.getSession().getAttribute("epost");
+	Stand stand = DbHandler.findStand(epost);
+	String name = request.getParameter("name");
+	String image = request.getParameter("image");
+	String button = request.getParameter("button");
+	
+	//mangler metodene i DBhandler for � oppdatere database
+	stand.setName(name);
+	stand.setImageurl(image);
+	
+	if("Oppdater".equals(button)) {
+		//ordne QR kode
+		response.sendRedirect("/standAdminServlet");
+	}else if("Logg ut".equals(button)){
+		request.getSession(false);
+		response.sendRedirect("LoginServlet");
 	}
-
+	
+	}
 }
