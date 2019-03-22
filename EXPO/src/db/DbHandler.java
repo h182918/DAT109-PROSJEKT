@@ -73,6 +73,8 @@ public class DbHandler {
 				stand.setId((Integer) resultSet.getObject(1));
 				stand.setName((String) resultSet.getObject(2));
 				stand.setImageurl((String) resultSet.getObject(3));
+				stand.setEpostadmin((String) resultSet.getObject(4));
+				stand.setPin((String) resultSet.getObject(5));
 			}
 			connection.close();
 		} catch (SQLException e) {
@@ -279,5 +281,23 @@ public class DbHandler {
 		} finally {
 			return stand;
 		}
+	}
+
+	public static void updateStand(Stand stand) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = connection
+					.prepareStatement("UPDATE expo.stand SET name=?,imageurl=?,epostadmin=?,pin=? WHERE standid = ?");
+			pstmt.setString(1, stand.getName());
+			pstmt.setString(2, stand.getImageurl());
+			pstmt.setString(3, stand.getEpostadmin());
+			pstmt.setString(4, stand.getPin());
+			pstmt.setInt(5, stand.getId());
+			pstmt.execute();
+			connection.close();
+		} catch (SQLException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}		
 	}
 }

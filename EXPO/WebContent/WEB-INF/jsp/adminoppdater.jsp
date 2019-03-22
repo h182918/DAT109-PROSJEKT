@@ -49,6 +49,10 @@
 			<div class="col-4"></div>
 			<div class="col-4">
 				<img src="${stand.imageurl}" class="img-fluid " />
+				<br>
+				<p>
+					<font color="blue" size="+2">${msg}</font>
+				</p>
 			</div>
 			<div class="col-4"></div>
 		</div>
@@ -61,7 +65,7 @@
 			<label for="staticId" class="col-sm-2 col-form-label">Stand
 				Id: </label>
 			<div class="col-sm-10">
-				<input type="text" readonly class="form-control-plaintext"
+				<input type="text" name="id" readonly class="form-control-plaintext"
 					id="staticId" value="${stand.id}">
 			</div>
 		</div>
@@ -69,7 +73,7 @@
 		<div class="form-group row">
 			<label for="name" class="col-sm-2 col-form-label">Navn: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="name"
+				<input type="text" class="form-control" id="name" name="name" pattern="^[A-ZÆØÅ]{3}[0-9]{3}$" required
 					placeholder="XXX000" value="${stand.name}">
 			</div>
 		</div>
@@ -78,7 +82,7 @@
 			<label for="epostAdmin" class="col-sm-2 col-form-label">Epost
 				til admin: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="epostAdmin"
+				<input type="text" class="form-control" id="epostAdmin" name="email"
 					placeholder="epost" value="${stand.epostadmin}">
 			</div>
 		</div>
@@ -86,7 +90,7 @@
 		<div class="form-group row">
 			<label for="pin" class="col-sm-2 col-form-label">Pin: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="pin" placeholder="pin"
+				<input type="text" class="form-control" name="pin" id="pin" placeholder="pin" required pattern="^[0-9]{4}$"
 					value="${stand.pin}">
 			</div>
 		</div>
@@ -94,7 +98,7 @@
 			<label for="image" class="col-sm-2 col-form-label"> URL til
 				bilde: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="image" placeholder="url"
+				<input type="text" class="form-control" id="image" name="imageurl" placeholder="url"
 					value="${stand.imageurl}">
 			</div>
 		</div>
