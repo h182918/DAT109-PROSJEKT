@@ -14,7 +14,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>RegistrerStandServlet</servlet-name>
-    <url-pattern>/RegistrerStand</url-pattern>
+    <url-pattern>/registrer</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>ResultServlet</servlet-name>

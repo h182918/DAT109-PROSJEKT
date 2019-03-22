@@ -40,7 +40,7 @@
 				<p>
 					<font color="red">${error}</font>
 				</p>
-				<form method="post" action="RegistrerStand">
+				<form method="post" action="registrer">
 					<div class="form-group">
 						<label for="email">Pin:</label> <input type="password"
 							class="form-control" name="pinIn" aria-describedby="passwordHelp"

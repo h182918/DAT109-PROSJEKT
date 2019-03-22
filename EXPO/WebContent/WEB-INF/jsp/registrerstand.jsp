@@ -38,7 +38,7 @@
 			<div class="col "></div>
 			<div class="col-md-6 col-sm-4 align-self-center">
 			
-				<form method="post" action="RegistrerStand">
+				<form method="post" action="registrer">
 					<div class="form-group">
 						<label for="email">Epost</label> <input type="email"
 							class="form-control" name="email" aria-describedby="emailHelp"
