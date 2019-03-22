@@ -21,9 +21,9 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body class="bg-light">
+<body >
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#004357">
 		<a class="navbar-brand"
 			href="${pageContext.servletContext.contextPath}/admin?jsp=1">EXPO</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -48,7 +48,7 @@
 			<div class="col">
 				<div class="text-center my-4">
 					<img
-						src="https://exhibition.bergenexpo.no/theme/img/site-logo.png?v=1.0.0"
+						src="http://www.hib.no/siteassets/bilder-logoer/expo-logo-172.png"
 						class="img" />
 				</div>
 			</div>
@@ -76,7 +76,7 @@
 						<td>${stand.totalScore }</td>
 						<td><a
 							href="${pageContext.servletContext.contextPath}/admin?jsp=2&id=${stand.stand.id}"
-							class="btn btn-dark">Se</a></td>
+							class="btn btn-dark px-2" style="background-color:#004357">Se</a></td>
 					</tr>
 				</c:forEach>
 

@@ -78,6 +78,7 @@ public class RegistrerStandServlet extends HttpServlet {
 		if(!correctPin) {
 			request.setAttribute("error", "Feil pin");
 			request.setAttribute("email", email);
+			request.setAttribute("pin", hashPin);
 			request.getRequestDispatcher("WEB-INF/jsp/registrerstandPIN.jsp").forward(request, response);
 			return;
 		}
