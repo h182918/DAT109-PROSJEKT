@@ -52,7 +52,7 @@
 							value="admin1234" required>
 					</div>
 					<button type="submit" class="btn btn-primary">Logg inn</button>
-					<a href="${pageContext.servletContext.contextPath}/RegistrerStand" class="btn btn-dark ml-2">Registrer Stand</a>
+					<a href="${pageContext.servletContext.contextPath}/registrer" class="btn btn-dark ml-2">Registrer Stand</a>
 				</form>
 				
 			</div>

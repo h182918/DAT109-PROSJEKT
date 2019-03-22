@@ -10,6 +10,19 @@ public class Stand {
 
 	public Stand() {
 	}
+	
+	
+
+	public Stand(int id, String name, String imageurl, String epostadmin, String pin) {
+		super();
+		this.id = id;
+		this.name = name;
+		this.imageurl = imageurl;
+		this.epostadmin = epostadmin;
+		this.pin = pin;
+	}
+
+
 
 	public String getEpostadmin() {
 		return epostadmin;

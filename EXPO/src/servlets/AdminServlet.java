@@ -20,13 +20,18 @@ public class AdminServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
 		if (LoginUtil.adminIsLoggedIn(request)) {
 			if (request.getParameter("jsp").equals("1")) {
 				List<standOverview> overview = DbHandler.getAllVotes();
 				request.setAttribute("overview", overview);
 				request.getRequestDispatcher("WEB-INF/jsp/adminscore.jsp").forward(request, response);
 			} else if (request.getParameter("jsp").equals("2")) {
-				// request.setAttribute("standid", request.getParameter("id"));
+				
+				if(request.getParameter("update")!=null) {
+					request.setAttribute("msg", "Standen er oppdatert");
+				}
+				
 				Stand stand = DbHandler.getStand(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("stand", stand);
 				request.getRequestDispatcher("WEB-INF/jsp/adminoppdater.jsp").forward(request, response);
@@ -44,7 +49,19 @@ public class AdminServlet extends HttpServlet {
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO - update stand based on parameters from form. 
+		
+		String idstr = request.getParameter("id");
+		int id = Integer.parseInt(idstr);
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String pin = request.getParameter("pin");
+		String imageurl = request.getParameter("imageurl");
+		Stand stand = new Stand(id,name,imageurl,email,pin);
+		
+		DbHandler.updateStand(stand);
+		
+		response.sendRedirect("admin?jsp=2&update=ok&id="+id);
+		
 	}
 
 }
