@@ -21,14 +21,14 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body class="bg-light">
+<body>
 
 	<div class="container">
 		<div class="row m-3">
 			<div class="col">
 				<div class="text-center my-4">
 					<img
-						src="https://exhibition.bergenexpo.no/theme/img/site-logo.png?v=1.0.0"
+						src="http://www.hib.no/siteassets/bilder-logoer/expo-logo-172.png"
 						class="img" />
 				</div>
 			</div>
@@ -44,14 +44,14 @@
 					<div class="form-group">
 						<label for="email">Epost</label> <input type="email"
 							class="form-control" name="email" aria-describedby="emailHelp"
-							placeholder="Epost" value="admin@admin.no" required>
+							placeholder="Epost" required>
 					</div>
 					<div class="form-group">
 						<label for="password">Passord</label> <input type="password"
 							class="form-control" name="password" placeholder="Passord"
-							value="admin1234" required>
+							required>
 					</div>
-					<button type="submit" class="btn btn-primary">Logg inn</button>
+					<button type="submit" class="btn btn-primary" style="background-color:#004357">Logg inn</button>
 					<a href="${pageContext.servletContext.contextPath}/registrer" class="btn btn-dark ml-2">Registrer Stand</a>
 				</form>
 				

@@ -17,13 +17,13 @@
             integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
             crossorigin="anonymous"></script>
 </head>
-<body class="bg-light">
+<body>
 
 <div class="container">
     <div class="row m-3">
         <div class="col">
             <div class="text-center my-4">
-                <img src="https://exhibition.bergenexpo.no/theme/img/site-logo.png?v=1.0.0" class="img"/>
+                <img src="http://www.hib.no/siteassets/bilder-logoer/expo-logo-172.png" class="img"/>
             </div>
         </div>
     </div>

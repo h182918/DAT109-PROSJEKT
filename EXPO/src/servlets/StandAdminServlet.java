@@ -7,39 +7,45 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import db.DbHandler;
+import entities.Stand;
+import login.LoginUtil;
+
 @WebServlet("/StandAdminServlet")
 public class StandAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(!LoginUtil.standAdminIsLoggedIn(request)){
-			response.sendRedirect("LoginServlet"); //evt sende med error som parameter?
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		if (!LoginUtil.standAdminIsLoggedIn(request)) {
+			response.sendRedirect("login?error=1"); 
 			return;
-		}else {
-				request.getRequestDispatcher("WEB-INF/jsp/AdminStand.jsp").forward(request,response);
-			}
+		} else {
+			request.getRequestDispatcher("WEB-INF/jsp/AdminStand.jsp").forward(request, response);
+		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
+		Stand stand = (Stand) request.getSession().getAttribute("stand");
+	
+		String email = request.getParameter("email");
+		String name = request.getParameter("name");
+		String image = request.getParameter("imageurl");
+		String pin = request.getParameter("pin");
+
+		stand.setName(name);
+		stand.setEpostadmin(email);
+		stand.setImageurl(image);
+		stand.setPin(pin);
 		
-	String epost = request.getSession().getAttribute("epost");
-	Stand stand = DbHandler.findStand(epost);
-	String name = request.getParameter("name");
-	String image = request.getParameter("image");
-	String button = request.getParameter("button");
-	
-	//mangler metodene i DBhandler for � oppdatere database
-	stand.setName(name);
-	stand.setImageurl(image);
-	
-	if("Oppdater".equals(button)) {
-		//ordne QR kode
-		response.sendRedirect("/standAdminServlet");
-	}else if("Logg ut".equals(button)){
-		request.getSession(false);
-		response.sendRedirect("LoginServlet");
-	}
-	
+		DbHandler.updateStand(stand);
+		
+		request.setAttribute("msg", "Standen er oppdatert");
+		response.sendRedirect("StandAdmin");
+
+		
+
 	}
 }

@@ -21,9 +21,9 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body class="bg-light">
+<body>
 
-	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#004357">
 		<a class="navbar-brand"
 			href="${pageContext.servletContext.contextPath}/admin?jsp=1">EXPO</a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -104,7 +104,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col">
-				<button type="submit" class="btn btn-primary float-right px-5 py-2">Lagre</button>
+				<button type="submit" class="btn btn-primary float-right px-5 py-2" style="background-color:#004357">Lagre</button>
 			</div>
 		</div>
 
