@@ -21,7 +21,7 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body >
+<body style="background-color:#004357">
 
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#004357">
 		<a class="navbar-brand"
@@ -46,10 +46,12 @@
 	<div class="container">
 		<div class="row m-3">
 			<div class="col">
-				<div class="text-center my-4">
+				<div class="text-center my-3">
+					<img src="https://hvl.no/Static/internett/images/logo-no.png"
+						class="img img-fluid" /> 
 					<img
-						src="http://www.hib.no/siteassets/bilder-logoer/expo-logo-172.png"
-						class="img" />
+						src="https://i.imgur.com/5QimFdH.png"
+						class="img img-fluid" />
 				</div>
 			</div>
 		</div>
@@ -57,7 +59,7 @@
 
 	<div class="container">
 
-		<table class="table table-striped" id="stands">
+		<table class="table table-striped" id="stands" style="color:white;background-color:#004357">
 			<thead>
 				<tr>
 					<th scope="col" onclick="sortTableAlf(0)" style="cursor: pointer">Stand</th>
@@ -76,7 +78,7 @@
 						<td>${stand.totalScore }</td>
 						<td><a
 							href="${pageContext.servletContext.contextPath}/admin?jsp=2&id=${stand.stand.id}"
-							class="btn btn-dark px-2" style="background-color:#004357">Se</a></td>
+							class="btn px-2" style="background-color: #FFCF01; color: white">Se</a></td>
 					</tr>
 				</c:forEach>
 

@@ -21,7 +21,7 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color:#004357">
 
 	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#004357">
 		<a class="navbar-brand"
@@ -62,24 +62,24 @@
 		action="${pageContext.servletContext.contextPath}/admin">
 
 		<div class="form-group row">
-			<label for="staticId" class="col-sm-2 col-form-label">Stand
+			<label for="staticId" class="col-sm-2 col-form-label" style="color:white">Stand
 				Id: </label>
 			<div class="col-sm-10">
-				<input type="text" name="id" readonly class="form-control-plaintext"
+				<input type="text" name="id" readonly style="color:white" class="form-control-plaintext"
 					id="staticId" value="${stand.id}">
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="name" class="col-sm-2 col-form-label">Navn: </label>
+			<label for="name" class="col-sm-2 col-form-label" style="color:white">Navn: </label>
 			<div class="col-sm-10">
-				<input type="text" class="form-control" id="name" name="name" pattern="^[A-ZÆØÅ]{3}[0-9]{3}$" required
-					placeholder="XXX000" value="${stand.name}">
+				<input type="text" class="form-control" id="name" name="name" pattern="^[A-ZÆØÅ]{1}[0-9]{2}$" required
+					placeholder="X00" value="${stand.name}">
 			</div>
 		</div>
 
 		<div class="form-group row">
-			<label for="epostAdmin" class="col-sm-2 col-form-label">Epost
+			<label for="epostAdmin" class="col-sm-2 col-form-label" style="color:white">Epost
 				til admin: </label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="epostAdmin" name="email"
@@ -88,14 +88,14 @@
 		</div>
 
 		<div class="form-group row">
-			<label for="pin" class="col-sm-2 col-form-label">Pin: </label>
+			<label for="pin" class="col-sm-2 col-form-label" style="color:white">Pin: </label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" name="pin" id="pin" placeholder="pin" required pattern="^[0-9]{4}$"
 					value="${stand.pin}">
 			</div>
 		</div>
 		<div class="form-group row">
-			<label for="image" class="col-sm-2 col-form-label"> URL til
+			<label for="image" class="col-sm-2 col-form-label" style="color:white"> URL til
 				bilde: </label>
 			<div class="col-sm-10">
 				<input type="text" class="form-control" id="image" name="imageurl" placeholder="url"
@@ -104,7 +104,7 @@
 		</div>
 		<div class="form-group row">
 			<div class="col">
-				<button type="submit" class="btn btn-primary float-right px-5 py-2" style="background-color:#004357">Lagre</button>
+				<button type="submit" class="btn float-right px-5 py-2" style="background-color: #00AFBA; color: white">Lagre</button>
 			</div>
 		</div>
 

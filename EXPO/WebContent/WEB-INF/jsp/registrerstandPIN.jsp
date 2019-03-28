@@ -21,15 +21,17 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body>
+<body style="background-color:#004357">
 
 	<div class="container">
 		<div class="row m-3">
 			<div class="col">
-				<div class="text-center my-4">
+				<div class="text-center my-3">
+					<img src="https://hvl.no/Static/internett/images/logo-no.png"
+						class="img img-fluid" /> 
 					<img
-						src="http://www.hib.no/siteassets/bilder-logoer/expo-logo-172.png"
-						class="img" />
+						src="https://i.imgur.com/5QimFdH.png"
+						class="img img-fluid" />
 				</div>
 			</div>
 		</div>
@@ -42,13 +44,13 @@
 				</p>
 				<form method="post" action="registrer">
 					<div class="form-group">
-						<label for="email">Pin:</label> <input type="password"
+						<label for="email" style="color:white">Pin:</label> <input type="password"
 							class="form-control" name="pinIn" aria-describedby="passwordHelp"
 							placeholder="Pin" required>
 					</div>
 					<input type="hidden" name="email" value="${email}">
 					<input type="hidden" name="pin" value="${pin}">
-					<button type="submit" class="btn btn-primary">Registrer</button>
+					<button type="submit" class="btn" style="background-color: #00AFBA; color: white">Registrer</button>
 				</form>
 
 			</div>
