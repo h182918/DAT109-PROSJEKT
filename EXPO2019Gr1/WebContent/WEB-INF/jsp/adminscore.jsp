@@ -21,11 +21,13 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body style="background-color:#004357">
+<body style="background-color: #004357">
 
-	<nav class="navbar navbar-expand-lg navbar-dark" style="background-color:#004357">
+	<nav class="navbar navbar-expand-lg navbar-dark"
+		style="background-color: #004357">
 		<a class="navbar-brand"
-			href="${pageContext.servletContext.contextPath}/admin?jsp=1">EXPO</a>
+			href="${pageContext.servletContext.contextPath}/admin?jsp=1"><img
+			src="https://i.imgur.com/8YhCXdF.png" class="img" width="150vw" /></a>
 		<button class="navbar-toggler" type="button" data-toggle="collapse"
 			data-target="#navbarNav" aria-controls="navbarNav"
 			aria-expanded="false" aria-label="Toggle navigation">
@@ -48,9 +50,6 @@
 			<div class="col">
 				<div class="text-center my-3">
 					<img src="https://hvl.no/Static/internett/images/logo-no.png"
-						class="img img-fluid" /> 
-					<img
-						src="https://i.imgur.com/5QimFdH.png"
 						class="img img-fluid" />
 				</div>
 			</div>
@@ -59,9 +58,10 @@
 
 	<div class="container">
 
-		<table class="table table-striped" id="stands" style="color:white;background-color:#004357">
+		<table class="table table-striped" id="stands"
+			style="background-color: #004357; color: white">
 			<thead>
-				<tr>
+				<tr style="background-color: #00AFBA; border: 2px solid #00AFBA">
 					<th scope="col" onclick="sortTableAlf(0)" style="cursor: pointer">Stand</th>
 					<th scope="col" onclick="sortTableNum(1)" style="cursor: pointer">Score</th>
 					<th scope="col" onclick="sortTableNum(2)" style="cursor: pointer">Antall
@@ -72,7 +72,8 @@
 			<tbody>
 
 				<c:forEach items="${overview}" var="stand">
-					<tr>
+					<tr
+						style="border-top: 2px solid #00AFBA; border-bottom: 2px solid #00AFBA">
 						<td scope="row">${stand.stand.name}</td>
 						<td>${stand.average }</td>
 						<td>${stand.totalScore }</td>

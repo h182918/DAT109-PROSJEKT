@@ -26,7 +26,7 @@
 					<img src="https://hvl.no/Static/internett/images/logo-no.png"
 						class="img img-fluid" /> 
 					<img
-						src="https://i.imgur.com/5QimFdH.png"
+						src="https://i.imgur.com/8YhCXdF.png"
 						class="img img-fluid" />
 				</div>
 			</div>
@@ -34,28 +34,45 @@
     <div class="row m-3">
         <div class="col">
             <div class="text-center">
-                <div class="text-dark font-weight-bold">Du ga <span><font color="#b8860b"> ${vote} </font></span>
-                    stjerner til ${stand.name}-standen
-                </div>
+                <div class="font-weight-bold" style="color:white">Gi din stemme til ${stand.name}-standen:</div>
             </div>
         </div>
     </div>
 </div>
-
 <div class="container">
     <div class="row m-2">
-        <div class="col-6">
-            <div class="text-center">
-                <img src="${stand.imageurl}" class="img-fluid "/>
-            </div>
+        <div class="col-3">
         </div>
         <div class="col-6">
-            <div class="text-center align-content-center">
-                <p style="font-size: larger; font-weight: bold">Total score: <span style="font-size: xx-large;color: gold">${avg}</span></p>
+            <img src="${stand.imageurl}" class="img-fluid "/>
+        </div>
+        <div class="col-3">
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="row my-2">
+        <c:forEach var="i" begin="1" end="5">
+            <div class="col nopadding">
+                <p class="text-center" id="star${i}" style="color:lightgrey;font-size:10vw;cursor:pointer" onclick="vote(${i})">&#9733;</p>
+            </div>
+        </c:forEach>
+    </div>
+    <div class="row m-3">
+        <div class="col">
+            <div class="text-center my-4">
+                <form name="sendVote" id="sendVote" method="post" action="Stand">
+                    <input type="hidden" value="0" name="vote" id="vote"/>
+                    <input type="hidden" value="${stand.id}" name="standId" id="StandId"/>
+                    <button type="submit" form="sendVote" class="btn px-5" style="color:white;background-color: #00AFBA">Stem!</button>
+                </form>
             </div>
         </div>
     </div>
 </div>
-
+<script type="text/javascript" src="${pageContext.servletContext.contextPath}/js/js.js"></script>
+<c:if test="${vote!=null}">
+    <script>vote(${vote.score})</script>
+</c:if>
 </body>
 </html>

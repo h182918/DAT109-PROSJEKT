@@ -30,7 +30,7 @@
 					<img src="https://hvl.no/Static/internett/images/logo-no.png"
 						class="img img-fluid" /> 
 					<img
-						src="https://i.imgur.com/5QimFdH.png"
+						src="https://i.imgur.com/8YhCXdF.png"
 						class="img img-fluid" />
 				</div>
 			</div>

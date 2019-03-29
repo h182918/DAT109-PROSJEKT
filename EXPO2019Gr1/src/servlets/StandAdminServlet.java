@@ -23,7 +23,7 @@ public class StandAdminServlet extends HttpServlet {
 		} else {
 			Stand stand = (Stand) request.getSession().getAttribute("stand");
 			int id = stand.getId();
-			String link = "http://localhost:8080/EXPO/Stand?id=" + id;
+			String link = "http://data1.hib.no:9090/EXPO2019Gr1/Stand?id=" + id;
 			request.setAttribute("qrlink", link);
 			request.getRequestDispatcher("WEB-INF/jsp/AdminStand.jsp").forward(request, response);
 		}
@@ -46,12 +46,9 @@ public class StandAdminServlet extends HttpServlet {
 		
 		DbHandler.updateStand(stand);
 		
-		String link = "http://localhost:8080/EXPO/Stand?id=" + stand.getId();
+		String link = "http://data1.hib.no:9090/EXPO2019Gr1/Stand?id=" + stand.getId();
 		request.setAttribute("qrlink", link);
 		request.setAttribute("msg", "Standen er oppdatert");
 		response.sendRedirect("StandAdmin");
-
-		
-
 	}
 }

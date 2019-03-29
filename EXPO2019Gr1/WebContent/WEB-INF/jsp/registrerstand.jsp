@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Login</title>
+<title>Registrer</title>
 <link rel="stylesheet"
 	href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
 	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -30,35 +30,27 @@
 					<img src="https://hvl.no/Static/internett/images/logo-no.png"
 						class="img img-fluid" /> 
 					<img
-						src="https://i.imgur.com/5QimFdH.png"
+						src="https://i.imgur.com/8YhCXdF.png"
 						class="img img-fluid" />
 				</div>
 			</div>
+		</div>
 		</div>
 
 		<div class="row align-items-center">
 			<div class="col "></div>
 			<div class="col-md-6 col-sm-4 align-self-center">
-				<p>
-					<font color="red">${error}</font>
-				</p>
-				<form method="post" action="login">
+			
+				<form method="post" action="registrer">
 					<div class="form-group">
 						<label for="email" style="color:white">Epost</label> <input type="email"
 							class="form-control" name="email" aria-describedby="emailHelp"
 							placeholder="Epost" required>
 					</div>
-					<div class="form-group">
-						<label for="password" style="color:white">Passord</label> <input type="password"
-							class="form-control" name="password" placeholder="Passord"
-							required>
-					</div>
-					<button type="submit" class="btn"
-						style="background-color: #00AFBA; color: white">Logg inn</button>
-					<a href="${pageContext.servletContext.contextPath}/registrer"
-						class="btn ml-2" style="background-color: #FFCF01; color: white">Registrer Stand</a>
+					<input type="hidden" name="needPin" value="true">
+					<button type="submit" class="btn" style="background-color: #00AFBA; color: white">Send pin</button>
 				</form>
-
+				
 			</div>
 			<div class="col "></div>
 		</div>
