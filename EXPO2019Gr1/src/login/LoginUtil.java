@@ -64,4 +64,23 @@ public class LoginUtil {
 		return pin;
 	}
 
+	public static void loginBruker(HttpServletRequest request, String email) {
+		HttpSession session = request.getSession(false);
+
+		if (session != null) {
+			session.invalidate();
+		}
+
+		session = request.getSession(true);
+		session.setAttribute("email", email);
+		session.setMaxInactiveInterval(60 * 60 * 5); // Expire session after 5 hours.		
+	}
+
+	public static boolean brukerIsLoggedIn(HttpServletRequest request) {
+		if(request.getSession().getAttribute("email") != null) {
+			return true;
+		}
+		return false;
+	}
+	
 }

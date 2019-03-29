@@ -8,10 +8,10 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
-
 /**
- * The point of this class is to handle all transaction logic to/from the database.
- * All imports and exports to/from database has to go through this class.
+ * The point of this class is to handle all transaction logic to/from the
+ * database. All imports and exports to/from database has to go through this
+ * class.
  *
  */
 public class DbHandler {
@@ -23,8 +23,8 @@ public class DbHandler {
 	public DbHandler() {
 	}
 
-	//TODO - For admin: Get all the stands and their total score
-	
+	// TODO - For admin: Get all the stands and their total score
+
 	/**
 	 * Inserts new stand into database
 	 *
@@ -88,7 +88,7 @@ public class DbHandler {
 	 * Finds a users vote for a stand.
 	 * 
 	 * @param expouser
-	 * @param standId - id (int) of the stand 
+	 * @param standId  - id (int) of the stand
 	 * @return
 	 */
 	@SuppressWarnings("finally")
@@ -193,9 +193,10 @@ public class DbHandler {
 			return formattedAvg;
 		}
 	}
-	
+
 	/**
 	 * Returns all the votes as a list of standOverview objects
+	 * 
 	 * @return
 	 */
 	@SuppressWarnings("finally")
@@ -209,11 +210,11 @@ public class DbHandler {
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				stand = new standOverview();
-				stand.setStand(findStandByName((String)resultSet.getObject(1)));
+				stand.setStand(findStandByName((String) resultSet.getObject(1)));
 				stand.setAverage(resultSet.getDouble(2));
-				stand.setTotalScore((Long)resultSet.getObject(3));
+				stand.setTotalScore((Long) resultSet.getObject(3));
 				overview.add(stand);
-				
+
 			}
 			connection.close();
 		} catch (SQLException | ClassNotFoundException e) {
@@ -224,7 +225,9 @@ public class DbHandler {
 	}
 
 	/**
-	 * Finds the stand in the database which is connected to the email address specified as a param.
+	 * Finds the stand in the database which is connected to the email address
+	 * specified as a param.
+	 * 
 	 * @param epostIn
 	 * @return
 	 */
@@ -239,11 +242,11 @@ public class DbHandler {
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				stand = new Stand();
-				stand.setId((int)resultSet.getObject(1));
+				stand.setId((int) resultSet.getObject(1));
 				stand.setName((String) resultSet.getObject(2));
-				stand.setImageurl((String)resultSet.getObject(3));
+				stand.setImageurl((String) resultSet.getObject(3));
 				stand.setEpostadmin((String) resultSet.getObject(4));
-				stand.setPin((String) resultSet.getObject(5));			
+				stand.setPin((String) resultSet.getObject(5));
 			}
 			connection.close();
 		} catch (SQLException | ClassNotFoundException e) {
@@ -252,9 +255,11 @@ public class DbHandler {
 			return stand;
 		}
 	}
-	
+
 	/**
-	 * Finds the stand in the database which is connected to the email address specified as a param.
+	 * Finds the stand in the database which is connected to the email address
+	 * specified as a param.
+	 * 
 	 * @param epostIn
 	 * @return
 	 */
@@ -269,11 +274,11 @@ public class DbHandler {
 			ResultSet resultSet = pstmt.executeQuery();
 			while (resultSet.next()) {
 				stand = new Stand();
-				stand.setId((int)resultSet.getObject(1));
+				stand.setId((int) resultSet.getObject(1));
 				stand.setName((String) resultSet.getObject(2));
-				stand.setImageurl((String)resultSet.getObject(3));
+				stand.setImageurl((String) resultSet.getObject(3));
 				stand.setEpostadmin((String) resultSet.getObject(4));
-				stand.setPin((String) resultSet.getObject(5));			
+				stand.setPin((String) resultSet.getObject(5));
 			}
 			connection.close();
 		} catch (SQLException | ClassNotFoundException e) {
@@ -298,6 +303,22 @@ public class DbHandler {
 			connection.close();
 		} catch (SQLException | ClassNotFoundException e) {
 			e.printStackTrace();
-		}		
+		}
 	}
+
+	public static boolean newUser(String email) {
+		try {
+			Class.forName("org.postgresql.Driver");
+			Connection connection = DriverManager.getConnection(url, user, password);
+			PreparedStatement pstmt = connection
+					.prepareStatement("INSERT INTO expo.expouser(epost)  VALUES (?)");
+			pstmt.setString(1, email);
+			pstmt.execute();
+			connection.close();
+			return true;
+		} catch (SQLException | ClassNotFoundException e) {
+			return false;
+		}
+	}
+
 }

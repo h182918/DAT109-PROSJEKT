@@ -64,4 +64,12 @@
     <servlet-name>LogoutServlet</servlet-name>
     <url-pattern>/logout</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>RegistrerBrukerServlet</servlet-name>
+    <servlet-class>servlets.RegistrerBrukerServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>RegistrerBrukerServlet</servlet-name>
+    <url-pattern>/RegistrerBruker</url-pattern>
+  </servlet-mapping>
 </web-app>

@@ -40,18 +40,26 @@
 				<p>
 					<font color="red">${error}</font>
 				</p>
-				<form method="post" action="registrer">
+				<form method="post" action="RegistrerBruker">
 					<div class="form-group">
 						<label for="email" style="color: white">Pin:</label> <input
 							type="password" class="form-control" name="pinIn"
 							aria-describedby="passwordHelp" placeholder="Pin" required>
 					</div>
-					<input type="hidden" name="email" value="${email}"> <input
-						type="hidden" name="pin" value="${pin}"> <input
-						type="checkbox" required><label style="color:white">Jeg godtar EXPO sine <a href="#">betingelser</a></label><br>
-
+					<input type="hidden" name="standId" value="${standId}">
+					<input type="hidden" name="email" value="${email}"> 
+					<input
+						type="hidden" name="pin" value="${pin}"> 
+					<input
+						type="hidden" name="email" value="${email}"> 
+					<input
+						type="hidden" name="pin" value="${pin}"> 
+					<input
+						type="checkbox" required><label style="color: white">Jeg
+						godtar EXPO sine <a href="#">betingelser</a>
+					</label><br>
 					<button type="submit" class="btn my-2"
-						style="background-color: #00AFBA; color: white">Registrer</button>
+						style="background-color: #00AFBA; color: white">Start</button>
 				</form>
 
 			</div>

@@ -37,6 +37,7 @@
 		</div>
 		</div>
 
+	<div class="container">
 		<div class="row align-items-center">
 			<div class="col "></div>
 			<div class="col-md-6 col-sm-4 align-self-center">
@@ -48,6 +49,7 @@
 							placeholder="Epost" required>
 					</div>
 					<input type="hidden" name="needPin" value="true">
+					
 					<button type="submit" class="btn" style="background-color: #00AFBA; color: white">Send pin</button>
 				</form>
 				

@@ -21,39 +21,37 @@
 	integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 	crossorigin="anonymous"></script>
 </head>
-<body style="background-color: #004357">
+<body style="background-color:#004357">
 
 	<div class="container">
 		<div class="row m-3">
 			<div class="col">
 				<div class="text-center my-3">
 					<img src="https://hvl.no/Static/internett/images/logo-no.png"
-						class="img img-fluid" /> <img
-						src="https://i.imgur.com/8YhCXdF.png" class="img img-fluid" />
+						class="img img-fluid" /> 
+					<img
+						src="https://i.imgur.com/8YhCXdF.png"
+						class="img img-fluid" />
 				</div>
 			</div>
+		</div>
 		</div>
 
 		<div class="row align-items-center">
 			<div class="col "></div>
 			<div class="col-md-6 col-sm-4 align-self-center">
-				<p>
-					<font color="red">${error}</font>
-				</p>
-				<form method="post" action="registrer">
+			
+				<form method="post" action="RegistrerBruker">
 					<div class="form-group">
-						<label for="email" style="color: white">Pin:</label> <input
-							type="password" class="form-control" name="pinIn"
-							aria-describedby="passwordHelp" placeholder="Pin" required>
+						<label for="email" style="color:white">Epost</label> <input type="email"
+							class="form-control" name="email" aria-describedby="emailHelp"
+							placeholder="Epost" required>
 					</div>
-					<input type="hidden" name="email" value="${email}"> <input
-						type="hidden" name="pin" value="${pin}"> <input
-						type="checkbox" required><label style="color:white">Jeg godtar EXPO sine <a href="#">betingelser</a></label><br>
-
-					<button type="submit" class="btn my-2"
-						style="background-color: #00AFBA; color: white">Registrer</button>
+					<input type="hidden" name="needPin" value="true">
+					<input type="hidden" name="standId" value="${standId}">
+					<button type="submit" class="btn" style="background-color: #00AFBA; color: white">Send pin</button>
 				</form>
-
+				
 			</div>
 			<div class="col "></div>
 		</div>
