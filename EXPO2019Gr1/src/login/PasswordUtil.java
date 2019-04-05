@@ -7,6 +7,10 @@ import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
 import javax.xml.bind.DatatypeConverter;
 
+/**
+ * Class used once to hash a pinkode. 
+ *
+ */
 public class PasswordUtil {
 
     @SuppressWarnings("serial")

@@ -15,11 +15,9 @@ import java.io.IOException;
 public class ResultServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-		// Not needed, but can be used to fx. find old votes for the user and thereby create a loop for the webapp. 
-	}
-
+	/**
+	 * Finds the average score for the stand and forwards.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		String standIdstr = request.getParameter("standId");

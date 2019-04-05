@@ -23,8 +23,7 @@ public class RegistrerBrukerServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * Sets the stand to use for later and forwards to registrerbruker.jsp.
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
@@ -34,8 +33,9 @@ public class RegistrerBrukerServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * This is the validation process implemented in this method:
+	 * send pin, check pin, create user.
+	 * then forward to the stand the user wanted to vote on.
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {

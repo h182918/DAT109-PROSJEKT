@@ -18,6 +18,15 @@ import login.LoginUtil;
 public class AdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * This servlet Tests to see if the admin is logged in, if true the the
+	 * parameter 'overview' is set holding all the scores for the stands, and the
+	 * admin is forwarded to the overview page.
+	 * If the admin isn't logged in he/she must do so first.
+	 * 
+	 * This method also works to control the page requested by the admin.
+	 * 
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
@@ -27,11 +36,11 @@ public class AdminServlet extends HttpServlet {
 				request.setAttribute("overview", overview);
 				request.getRequestDispatcher("WEB-INF/jsp/adminscore.jsp").forward(request, response);
 			} else if (request.getParameter("jsp").equals("2")) {
-				
-				if(request.getParameter("update")!=null) {
+
+				if (request.getParameter("update") != null) {
 					request.setAttribute("msg", "Standen er oppdatert");
 				}
-				
+
 				Stand stand = DbHandler.getStand(Integer.parseInt(request.getParameter("id")));
 				request.setAttribute("stand", stand);
 				request.getRequestDispatcher("WEB-INF/jsp/adminoppdater.jsp").forward(request, response);
@@ -47,21 +56,24 @@ public class AdminServlet extends HttpServlet {
 
 	}
 
+	/**
+	 * Updates the database and sends to doGet.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
+
 		String idstr = request.getParameter("id");
 		int id = Integer.parseInt(idstr);
 		String email = request.getParameter("email");
 		String name = request.getParameter("name");
 		String pin = request.getParameter("pin");
 		String imageurl = request.getParameter("imageurl");
-		Stand stand = new Stand(id,name,imageurl,email,pin);
-		
+		Stand stand = new Stand(id, name, imageurl, email, pin);
+
 		DbHandler.updateStand(stand);
-		
-		response.sendRedirect("admin?jsp=2&update=ok&id="+id);
-		
+
+		response.sendRedirect("admin?jsp=2&update=ok&id=" + id);
+
 	}
 
 }

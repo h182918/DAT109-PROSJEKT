@@ -10,10 +10,21 @@ import javax.mail.internet.AddressException;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
  
+/**
+ * Class used to send emails to users and admins.
+ *
+ */
 public class JavaEmail{
 	
     Session mailSession;
  
+    /**
+     * Sends an email with a pinkode to the receiver.
+     * @param receiver email
+     * @param pinkode
+     * @throws AddressException
+     * @throws MessagingException
+     */
     public static void send(String receiver, String pin) throws AddressException, MessagingException
     {
         JavaEmail javaEmail = new JavaEmail();

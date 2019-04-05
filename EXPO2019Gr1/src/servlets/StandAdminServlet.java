@@ -15,6 +15,9 @@ import login.LoginUtil;
 public class StandAdminServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
+	/**
+	 * Checks if you're correctly logged in, then sets parameters 'stand' and 'stand id' and forwards.
+	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		if (!LoginUtil.standAdminIsLoggedIn(request)) {
@@ -29,6 +32,9 @@ public class StandAdminServlet extends HttpServlet {
 		}
 	}
 
+	/**
+	 * Updates database and sends redirect.
+	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
